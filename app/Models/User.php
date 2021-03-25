@@ -32,6 +32,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function rooms()
+    {
+        return $this->hasMany(Room::class);
+    }
+
     /**
      * The attributes that should be cast to native types.
      *
