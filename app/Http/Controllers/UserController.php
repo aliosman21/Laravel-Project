@@ -12,8 +12,8 @@ class UserController extends Controller
 {
 
     public function index() {
-        $users = User::all();
-        return view('users.manage',compact('users'));
+        // $users = User::all();
+        return view('users.manage');
     }
 
     public function create(){
@@ -33,13 +33,12 @@ class UserController extends Controller
 
             $data = User::latest()->get();
             return Datatables::of($data)
-
                 ->addColumn('action', function($row){
                     $actionBtn = '<a href="" class="edit btn btn-success btn-sm">Edit</a> <a href="" class="delete btn btn-danger btn-sm">Delete</a>';
                     return $actionBtn;
                 })
-                ->editColumn('name', 'into')
-                ->rawColumns(['action','name'])
+                // ->editColumn('name', 'into') // da ana kont 3amlo 3lshan a3ml edit ll name mn blade tany 
+                ->rawColumns(['action'])
                 ->make(true);
         }
     }
