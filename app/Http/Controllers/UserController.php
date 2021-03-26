@@ -10,24 +10,18 @@ use DataTables;
 
 class UserController extends Controller
 {
-    
-    public function index()
-    {
-        //$users = User::with('users')->get();
+
+    public function index() {
         $users = User::all();
-        return view('admin.manage',compact('users'));
+        return view('users.manage',compact('users'));
     }
 
-    public function create()
-    {
+    public function create(){
         $users = User::all();
-        
         return view('users.create',compact('users'));
     }
 
-    public function store(StoreUserRequest $request)
-    {
-        
+    public function store(StoreUserRequest $request) {
         $requestData = $request->all();
         User::create($requestData);
         return redirect()->route('home');
@@ -36,10 +30,10 @@ class UserController extends Controller
     public function getUsers(Request $request) {
         //3awzien el zaraer gwa blade.php ya nakash
         if ($request->ajax()) {
-            
+
             $data = User::latest()->get();
             return Datatables::of($data)
-               
+
                 ->addColumn('action', function($row){
                     $actionBtn = '<a href="" class="edit btn btn-success btn-sm">Edit</a> <a href="" class="delete btn btn-danger btn-sm">Delete</a>';
                     return $actionBtn;

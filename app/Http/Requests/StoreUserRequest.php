@@ -11,8 +11,7 @@ class StoreUserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize(){
         return true;
     }
 
@@ -21,8 +20,7 @@ class StoreUserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         $rules = [
             'email' => 'unique:users|required',
             'name' => 'required',
@@ -31,7 +29,6 @@ class StoreUserRequest extends FormRequest
             'role' => 'required',
 
         ];
-
         return $rules;
     }
 }
