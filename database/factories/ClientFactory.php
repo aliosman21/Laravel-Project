@@ -29,7 +29,6 @@ class ClientFactory extends Factory
             'country'=> $this->faker->country,
             'avatar_img'=> $this->faker->catchPhrase,
             'last_login' => now(),
-            'user_id' => User::all()->random()->id,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ];
     }
