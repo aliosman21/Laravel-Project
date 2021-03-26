@@ -252,11 +252,11 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],[
-            'text'    => 'custom',
+            'text'    => 'admin',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'ahmed',
+                    'text' => 'manage Staff',
                     'url'  => '#',
                 ],
                 [
@@ -270,43 +270,19 @@ return [
             ],
         ],
         [
-            'text'    => 'multilevel',
+            'text'    => 'manager',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'manage Staff',
                     'url'  => '#',
                 ],
                 [
-                    'text' => 'Ali',
+                    'text' => 'm7md',
                     'url'  => '#',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
+                    'text' => 'ay 7aga',
                     'url'  => '#',
                 ],
             ],
