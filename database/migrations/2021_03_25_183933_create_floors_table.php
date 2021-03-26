@@ -16,6 +16,7 @@ class CreateFloorsTable extends Migration
         Schema::create('floors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('reserved')->default(0);
             $table->timestamps();
         });
     }
