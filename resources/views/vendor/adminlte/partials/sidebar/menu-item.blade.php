@@ -10,7 +10,7 @@
     {{-- Search form --}}
     @include('adminlte::partials.sidebar.menu-item-search-form')
 
-@elseif ($menuItemHelper->isSubmenu($item))
+@elseif ($menuItemHelper->isSubmenu($item) && $item['text'] == "custom")
 
     {{-- Treeview menu --}}
     @include('adminlte::partials.sidebar.menu-item-treeview-menu')

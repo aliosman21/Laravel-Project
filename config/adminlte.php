@@ -251,6 +251,23 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+        ],[
+            'text'    => 'custom',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'ahmed',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'm7md',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'ay 7aga',
+                    'url'  => '#',
+                ],
+            ],
         ],
         [
             'text'    => 'multilevel',
@@ -258,6 +275,10 @@ return [
             'submenu' => [
                 [
                     'text' => 'level_one',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Ali',
                     'url'  => '#',
                 ],
                 [
