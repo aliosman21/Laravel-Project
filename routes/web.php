@@ -40,3 +40,22 @@ Route::get('/clients',[ClientController::class , 'index'])->name('clients.index'
 Route::post('/clients/authenticate',[ClientController::class,'authenticate'])->name('clients.authenticate');
 Auth::routes();
 
+/* 
+
+    ###### base for roles and permission 
+
+    Route::group(['middleware' => ['role:super-admin|admin']], function () {
+   
+     });
+
+    Route::group(['middleware' => ['permission:edit users|add users']], function () {
+
+     });
+
+     Route::group(['middleware' => ['role_or_permission:super-admin|add users']], function () {
+  
+     });
+
+*/
+
+
