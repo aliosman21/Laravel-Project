@@ -6,17 +6,48 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
 
     public function index() {
-        // $users = User::all();
+        // $users = User::all()
         return view('users.manage');
     }
 
+    public function login(){
+        return view('users.staffLogin');
+    }
+    public function authenticate(Request $request){
+       $dataAttempt = array(
+            'email' => $request->email,
+            'password' => $request->password
+        );
+
+
+        if(Auth::guard('user')->attempt($dataAttempt)){
+            //dd(Auth::guard('user')->user()->role);
+            if(Auth::guard('user')->user()->role == "admin")
+                return redirect()->route('users.index');
+            else
+                return redirect()->route('home');
+/*             $user = User::where('email', $request->email)->get();
+            dd(Auth::user());
+            dd(Auth::login($user[0])); */
+
+        }
+        else{
+             return redirect()->route('users.login');
+        }
+        //dd($user[0]);
+
+    }
+
+
     public function create(){
+        //dd(Auth::user());
         $users = User::all();
         return view('users.create',compact('users'));
     }
@@ -33,7 +64,7 @@ class UserController extends Controller
 
             $data = User::latest()->get();
             return Datatables::of($data)
-                ->addColumn('action', 'helpers.actionsButtons') 
+                ->addColumn('action', 'helpers.actionsButtons')
                 ->rawColumns(['action'])
                 ->make(true);
         }

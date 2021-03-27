@@ -22,7 +22,7 @@
 
     {{-- Menu items --}}
     <ul class="nav nav-treeview">
-        @if ($item['submenu'])
+        @if ($item['text'] == 'admin')
             @each('adminlte::partials.sidebar.menu-item', $item['submenu'], 'item')
         @endif
     </ul>

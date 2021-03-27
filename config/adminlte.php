@@ -256,15 +256,19 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'manage Staff',
+                    'text' => 'Manage Users',
                     'url'  => '#',
                 ],
                 [
-                    'text' => 'm7md',
+                    'text' => 'Manage Floors',
                     'url'  => '#',
                 ],
                 [
-                    'text' => 'ay 7aga',
+                    'text' => 'Manage Clients',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Manage Rooms',
                     'url'  => '#',
                 ],
             ],
@@ -274,15 +278,51 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'manage Staff',
+                    'text' => 'Manage Users',
                     'url'  => '#',
                 ],
                 [
-                    'text' => 'm7md',
+                    'text' => 'Manage Floors',
                     'url'  => '#',
                 ],
                 [
-                    'text' => 'ay 7aga',
+                    'text' => 'Manage Rooms',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Manage Clients',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'receptionist',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Client reservations',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'My Approved Clients',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Manage Clients',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'client',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'My Reservations',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Make Reservation',
                     'url'  => '#',
                 ],
             ],

@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+    {{ Auth::user() }}
     <div class="row">
         <div class="col-12">
             <div class="card">

@@ -22,8 +22,8 @@ class CreateClientsTable extends Migration
             $table->string('country');
             $table->enum('gender',['male', 'female']);
             $table->boolean('approved')->default(0);
-            $table->string('avatar_img');
-            $table->date('last_login');
+            $table->string('avatar_img')->default('/img/defaultImg.jpg');
+            $table->date('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
