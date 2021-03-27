@@ -5,4 +5,4 @@
 
  {{ Auth::guard('user')->user() }}
 
- <strong>A7A</strong>
+ <strong>LOL</strong>
