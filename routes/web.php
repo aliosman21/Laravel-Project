@@ -26,7 +26,7 @@ Route::get('/', function () {
 /* Route::post('/registerclient', [App\Http\Controllers\ClientController::class, 'store'])->name('create'); */
 
 Auth::routes();
-
+//----------------------------USERS-------------------------------------------------------------------------------//
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/users',[UserController::class, 'index'])->name('users.index')->middleware('auth');
 Route::get('/users/login',[UserController::class, 'login'])->name('users.login');
@@ -37,41 +37,46 @@ Route::get('/users/{user}/edit',[UserController::class , 'edit'])->name('users.e
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 Route::post('/users/authenticate',[UserController::class,'authenticate'])->name('users.authenticate');
-<<<<<<< HEAD
+Route::get('/users/listUnApprovedClients',[UserController::class, 'getNonApprovedClients'])->name('users.nonApprovedClients'); //list Non approved clients
+Route::get('/users/listApprovedClients',[UserController::class, 'getApprovedClients'])->name('users.ApprovedClients'); //list approved clients
+Route::post('/users/approveClient',[UserController::class, 'approveClient'])->name('users.approveClient'); //change non approved clients to approved
+//----------------------------USERS-------------------------------------------------------------------------------//
 
+//----------------------------FLOORS-------------------------------------------------------------------------------//
 Route::get('/floors',[FloorController::class,'index'])->name('floors.index');
 Route::get('/floors/create',[FloorController::class,'create'])->name('floors.create');
 Route::post('/floors/store',[FloorController::class,'store'])->name('floors.store');
 Route::get('/floors/{floor}/edit',[FloorController::class , 'edit'])->name('floors.edit');
 Route::put('/floors/{floor}', [FloorController::class, 'update'])->name('floors.update');
 Route::delete('/floors/{floor}', [FloorController::class, 'destroy'])->name('floors.destroy');
-=======
-Route::get('/users/listUnApprovedClients',[UserController::class, 'getNonApprovedClients'])->name('users.nonApprovedClients'); //list Non approved clients
-Route::get('/users/listApprovedClients',[UserController::class, 'getApprovedClients'])->name('users.ApprovedClients'); //list approved clients
-Route::post('/users/approveClient',[UserController::class, 'approveClient'])->name('users.approveClient'); //change non approved clients to approved
-/* Route::post('/users/send-mail',[UserController::class,'sendApproveMail'])->name('users.sendApproveMail');
- */
->>>>>>> 771dce8f19e76af7ef5100a276878e7144390a8e
 
+//----------------------------FLOORS-------------------------------------------------------------------------------//
+
+//----------------------------ROOMS-------------------------------------------------------------------------------//
 Route::get('/rooms',[RoomController::class,'index'])->name('rooms.index');
 Route::get('/rooms/create',[RoomController::class,'create'])->name('rooms.create');
 Route::post('/rooms/store',[RoomController::class,'store'])->name('rooms.store');
 Route::get('/rooms/{room}/edit',[RoomController::class , 'edit'])->name('rooms.edit');
 Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update');
 Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
+//----------------------------ROOMS-------------------------------------------------------------------------------//
+
+
+//----------------------------CLIENTS-------------------------------------------------------------------------------//
 
 Route::get('/clients',[ClientController::class , 'index'])->name('clients.index')->middleware('clientAuth');
+Route::get('/clients/create/{room}',[ClientController::class,'create'])->name('rooms.create');
+Route::get('/clients/reservations',[ClientController::class,'reservation'])->name('rooms.reservation');
+Route::post('/clients/store',[ClientController::class,'store'])->name('rooms.store');
 Route::post('/clients/authenticate',[ClientController::class,'authenticate'])->name('clients.authenticate');
 Auth::routes();
+//----------------------------CLIENTS-------------------------------------------------------------------------------//
 
-<<<<<<< HEAD
+
+
+
 /*
 
-=======
-
-/*
-
->>>>>>> 771dce8f19e76af7ef5100a276878e7144390a8e
     ###### base for roles and permission
 
     Route::group(['middleware' => ['role:super-admin|admin']], function () {

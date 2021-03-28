@@ -14,7 +14,8 @@ class AddReservationsIdToRoomsTable extends Migration
     public function up()
     {
         Schema::table('rooms', function (Blueprint $table) {
-            $table->foreignId('reservation_id')->constrained();
+           /*  $table->foreignId('reservation_id')->nullable();
+            $table->foreign('reservation_id')->references('id')->on('reservations'); */
         });
     }
 

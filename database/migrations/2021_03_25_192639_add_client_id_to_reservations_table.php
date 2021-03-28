@@ -14,7 +14,7 @@ class AddClientIdToReservationsTable extends Migration
     public function up()
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->foreignId('client_id')->constrained();
+            $table->foreignId('client_id')->constrained(); //NOT NULLABLE
         });
     }
 

@@ -14,7 +14,7 @@ class RoomSeeder extends Seeder
      */
     public function run()
     {
-        $room = new Room();
+/*         $room = new Room();
         $room->number = 000;
         $room->capacity = 0;
         $room->price = 0;
@@ -22,6 +22,6 @@ class RoomSeeder extends Seeder
         $room->client_id = 1;
         $room->user_id = 1;
         $room->reservation_id = 1;
-        $room->save();
+        $room->save(); */
     }
 }

@@ -15,7 +15,7 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
-        $client = new Client();
+/*         $client = new Client();
         $client->user_id = 1;
         $client->name = 'dafault';
         $client->email = 'default@default.com';
@@ -25,7 +25,7 @@ class ClientSeeder extends Seeder
         $client->gender = 'male';
         $client->last_login = now();
         $client->password = Hash::make('123456');
-        $client->save();
+        $client->save(); */
 
     }
 }

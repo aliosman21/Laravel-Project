@@ -1,5 +1,7 @@
  {{ Auth::guard('client')->user() }}
 
+ {{ $message }}
+
  <p>HELLO</p>
 
 

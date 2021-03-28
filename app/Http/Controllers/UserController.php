@@ -16,10 +16,8 @@ class UserController extends Controller
 {
 
     public function index() {
-<<<<<<< HEAD
         $users = User::all();
         return view('users.manage',compact('users'));
-=======
         // Auth::guard('user')->user()->assignRole(Role::findById(1));
         // $users = User::all()
         // dd(Auth::guard('user')->user()->getAllPermissions());
@@ -30,7 +28,6 @@ class UserController extends Controller
         // dd(Auth::guard('user')->user()->hasRole('manager'));
 
         return view('users.manage');
->>>>>>> 771dce8f19e76af7ef5100a276878e7144390a8e
     }
 
     public function login(){

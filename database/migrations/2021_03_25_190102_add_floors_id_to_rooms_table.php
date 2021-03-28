@@ -14,7 +14,7 @@ class AddFloorsIdToRoomsTable extends Migration
     public function up()
     {
         Schema::table('rooms', function (Blueprint $table) {
-         $table->foreignId('floor_id')->constrained();
+         $table->foreignId('floor_id')->constrained(); //NOT NULLABLE
         });
     }
 

@@ -27,10 +27,11 @@ class ClientFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'mobile' => $this->faker->phoneNumber,
+            'password' => Hash::make('123456'),
+            'gender' => $this->faker->randomElement(['male' ,'female']),
             'country'=> $this->faker->country,
             'avatar_img'=> $this->faker->catchPhrase,
             'last_login' => now(),
-            'password' => Hash::make('123456'),
         ];
     }
 }

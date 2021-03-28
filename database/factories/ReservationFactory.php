@@ -22,7 +22,6 @@ class ReservationFactory extends Factory
     public function definition()
     {
         return [
-            //
         ];
     }
 }

@@ -18,6 +18,8 @@ class CreateReservationsTable extends Migration
             $table->integer('accompany_number');
             $table->integer('price');
             $table->enum('status',['paid','pending'])->default('pending');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
