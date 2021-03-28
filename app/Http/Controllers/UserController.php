@@ -10,12 +10,21 @@ use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
 
     public function index() {
+        // Auth::guard('user')->user()->assignRole(Role::findById(1));
         // $users = User::all()
+        // dd(Auth::guard('user')->user()->getAllPermissions());
+        // dd(Auth::guard('user')->user()->hasRole('admin'));
+        // dd(auth()->guard('user')->user()->hasRole('admin'));
+        // Auth::guard('user')->user()->removeRole('admin');
+        // Auth::guard('user')->user()->assignRole('manager');
+        // dd(Auth::guard('user')->user()->hasRole('manager'));
+
         return view('users.manage');
     }
 
