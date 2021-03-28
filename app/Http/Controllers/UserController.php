@@ -4,17 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
+use App\Models\Client;
+use App\Notifications\NotifyApproval;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
 
     public function index() {
+<<<<<<< HEAD
         $users = User::all();
         return view('users.manage',compact('users'));
+=======
+        // Auth::guard('user')->user()->assignRole(Role::findById(1));
+        // $users = User::all()
+        // dd(Auth::guard('user')->user()->getAllPermissions());
+        // dd(Auth::guard('user')->user()->hasRole('admin'));
+        // dd(auth()->guard('user')->user()->hasRole('admin'));
+        // Auth::guard('user')->user()->removeRole('admin');
+        // Auth::guard('user')->user()->assignRole('manager');
+        // dd(Auth::guard('user')->user()->hasRole('manager'));
+
+        return view('users.manage');
+>>>>>>> 771dce8f19e76af7ef5100a276878e7144390a8e
     }
 
     public function login(){
@@ -42,6 +58,56 @@ class UserController extends Controller
              return redirect()->route('users.login');
         }
         //dd($user[0]);
+
+    }
+
+    public function getNonApprovedClients(){
+        $clients = Client::where('approved', 0)->get();
+
+         return Datatables::of($clients)
+                /* ->addColumn('action', 'helpers.actionsButtons')
+                ->rawColumns(['action']) */
+                ->make(true);
+    }
+
+    public function getApprovedClients(){
+        $clients = Client::where('approved', 1)->get();
+
+         return Datatables::of($clients)
+                /* ->addColumn('action', 'helpers.actionsButtons')
+                ->rawColumns(['action']) */
+                ->make(true);
+    }
+
+    public function approveClient(Request $request){
+
+        $client = Client::where('email' , $request->email)->first();
+
+        if (!$client == null) {
+            if ($client->approved == 0) {
+                $client->approved = 1;
+                $client->save();
+                $this->sendMail($client);
+            }
+        }
+        return  redirect()->route('home');  // to the datatable page
+    }
+
+    private function sendMail($client){
+
+
+        //Notification way of laravel
+        $client->notify(new NotifyApproval());
+
+        //Normal way to use laravel Mail
+        /*  $details = [
+                'title' => 'Mail From HotelManagement System',
+                'body' =>  'Hello, '.$client->name.' Hope you are having a wonderful day, If you are reading
+                this you have been accepted to our system and we are all waiting for you to login',
+                'rand'=>'random text'
+            ];
+                \Mail::to($client->email)->send(new \App\Mail\ApprovedMail($details));
+                dd("Email is Sent."); */
 
     }
 
