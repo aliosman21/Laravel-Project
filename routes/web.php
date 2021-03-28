@@ -65,15 +65,18 @@ Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.
 //----------------------------CLIENTS-------------------------------------------------------------------------------//
 
 Route::get('/clients',[ClientController::class , 'index'])->name('clients.index')->middleware('clientAuth');
-Route::get('/clients/create/{room}',[ClientController::class,'create'])->name('rooms.create');
-Route::get('/clients/reservations',[ClientController::class,'reservation'])->name('rooms.reservation');
-Route::post('/clients/store',[ClientController::class,'store'])->name('rooms.store');
-Route::post('/clients/authenticate',[ClientController::class,'authenticate'])->name('clients.authenticate');
+Route::get('/clients/create/{room}',[ClientController::class,'create'])->name('rooms.create')->middleware('clientAuth');
+Route::get('/clients/reservations',[ClientController::class,'reservation'])->name('rooms.reservation')->middleware('clientAuth');
+Route::post('/clients/store',[ClientController::class,'store'])->name('rooms.store')->middleware('clientAuth');
+Route::post('/clients/authenticate',[ClientController::class,'authenticate'])->name('clients.authenticate')->middleware('clientAuth');
 Auth::routes();
+
 //----------------------------CLIENTS-------------------------------------------------------------------------------//
 
+//------------------------checkout---------------------------------------------//
 
-
+Route::get('checkout',[App\Http\Controllers\CheckoutController::class, 'checkout'])->name('clients.checkout');
+Route::post('checkout',[App\Http\Controllers\CheckoutController::class, 'afterPayment'])->name('checkout.credit-card');
 
 /*
 

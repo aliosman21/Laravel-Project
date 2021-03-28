@@ -1,10 +1,11 @@
  {{ Auth::guard('client')->user() }}
 
- {{ $message }}
+ {{ $message ?? '' }}
+ {{dd($rooms)}}
 
  <p>HELLO</p>
 
 
  {{ Auth::guard('user')->user() }}
 
- <strong>LOL</strong>
+ <strong>craete reservation table</strong>
