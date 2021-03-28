@@ -1,6 +1,5 @@
 {{ Auth::guard('client')->user() }}
 
-{{dd($reservations)}}
 
 <p>HELLO</p>
 
