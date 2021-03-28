@@ -28,7 +28,7 @@
  <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
  </div>
         </div>
- 
+
     </div>
 
     {{-- Email field --}}
@@ -101,6 +101,13 @@
         @endif
     </div>
 
+    <div class="form-group">
+        <label  for="post_creator">User Creator</label>
+        <select name="user_id" class="form-control" id="post_creator">
+                <option value="{{Auth::guard('user')->user()}}">{{Auth::guard('user')->user()}}</option>
+        </select>
+    </div>
+
     {{-- Create button --}}
     <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
         <span class="fas fa-user-plus"></span>
@@ -111,4 +118,4 @@
 
 </div>
 
-        @stop
+@stop

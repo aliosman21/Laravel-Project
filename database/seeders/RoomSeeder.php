@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Room;
 use Illuminate\Database\Seeder;
 
 class RoomSeeder extends Seeder
@@ -13,6 +14,14 @@ class RoomSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Room::factory(25)->create();
+        $room = new Room();
+        $room->number = 000;
+        $room->capacity = 0;
+        $room->price = 0;
+        $room->reserved = 0;
+        $room->client_id = 1;
+        $room->user_id = 1;
+        $room->reservation_id = 1;
+        $room->save();
     }
 }
