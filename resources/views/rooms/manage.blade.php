@@ -7,10 +7,15 @@
 @stop
 
 @section('content')
+    @if(isset($msg))
+        <div class="alert alert-danger">
+            {{ $msg }}
+        </div>
+    @endif
 @if(auth()->guard('user')->user()->hasRole('admin')||auth()->guard('user')->user()->hasRole('manager'))
         <a href="{{ route('rooms.create') }}" class="edit btn btn-success btn-block">Create room</a>
         <br/>
-    
+
 @endif
 
     <table class="table table-bordered yajra-datatable">

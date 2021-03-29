@@ -7,7 +7,7 @@ use App\Models\Client;
 use App\Models\Floor;
 use App\Models\Room;
 use App\Models\User;
-use DataTables; 
+use DataTables;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -31,19 +31,19 @@ class RoomController extends Controller {
         return redirect()->route('rooms.index');
     }
     public function getRoom(Request $request) {
-        
+
         if ($request->ajax()) {
 
             $data = Room::latest()->get();
             return Datatables::of($data)
                 ->addColumn('action', 'helpers.roomsActionsButtons')
                 ->addColumn('RealPrice',function($data){
-                  $realPrice = $data->price / 100; 
+                  $realPrice = $data->price / 100;
                   $view =  $realPrice;
                     return  $view ;
                 })
                 ->addColumn('floorNumber',function($data){
-                    $floor = (int)( $data->number / 1000)  ; 
+                    $floor = (int)( $data->number / 1000)  ;
                     $floorNumber = $floor * 1000 ;
                     $view =   $floorNumber;
                       return  $view ;
@@ -64,6 +64,10 @@ class RoomController extends Controller {
     }
 
     public function destroy(Room $room) {
+        if($room->reserved == 1){
+            $msg = 'this room is reserved ,cant be removed';
+            return view('rooms.manage',compact('msg'));
+        }
         $room->delete();
         return redirect()->route('rooms.index');
     }
