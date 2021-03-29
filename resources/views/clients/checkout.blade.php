@@ -17,7 +17,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="">
-                <p>You will be charged {{$reservation->price / 100}} USD</p>
+                <p style="color: red">You will be charged {{$reservation->price / 100}} USD</p>
             </div>
             <div class="card">
                 <form action="{{route('checkout.credit-card')}}"  method="post" id="payment-form">
@@ -49,6 +49,9 @@
                 </form>
             </div>
         </div>
+    </div>
+    <div style="float: right"><br>
+        <a href="{{route('clients.index')}}" class="btn btn-dark">Cancel</a>
     </div>
 </div>
 <script src="https://js.stripe.com/v3/"></script>

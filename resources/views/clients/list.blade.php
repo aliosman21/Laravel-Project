@@ -7,12 +7,10 @@
 @stop
 
 @section('content')
-
-
     <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
-                
+
                 <th>accompany number</th>
                 <th>price</th>
                 <th>room number</th>

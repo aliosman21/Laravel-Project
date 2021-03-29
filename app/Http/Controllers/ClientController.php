@@ -43,7 +43,7 @@ class ClientController extends Controller {
         $room = Room::where('reserved', 0)->get();;
          return Datatables::of($room)
                 ->addColumn('action', 'helpers.getRooms')
-                ->rawColumns(['action']) 
+                ->rawColumns(['action'])
                 ->make(true);
     }
 
@@ -57,13 +57,14 @@ class ClientController extends Controller {
         return view('clients.list');
     }
     public function getReservation(){
-        $reservation = Reservation::where('id', Auth::guard('client')->user()->id)->get();
+        $reservation = Reservation::where('client_id', Auth::guard('client')->user()->id)->where('status','paid')->get();
          return Datatables::of($reservation)
                 ->make(true);
     }
 
 
     public function store(Request $request){
+
         $end_date = new DateTime($request->end_date);
         $start_date = new DateTime($request->start_date);
         $interval = $end_date->diff($start_date);
@@ -74,7 +75,9 @@ class ClientController extends Controller {
             'start_date' => 'required',
             'end_date' => 'required'
         ]);
-        //dd($room->price * 100 * $days);
+
+        $reservation = $request;
+
         $reservation = Reservation::create([
             'accompany_number'=> $room->capacity,
             'price' => $room->price * 100 * $days,
@@ -86,7 +89,9 @@ class ClientController extends Controller {
             ]);
             $room->reserved = 1;
             $room->save();
-        return redirect()->route('clients.checkout',compact('reservation'));
+
+
+        return redirect()->route('clients.checkout');
     }
 
     public function authenticate(Request $request){
