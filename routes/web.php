@@ -69,6 +69,8 @@ Route::get('/clients/create/{room}',[ClientController::class,'create'])->name('r
 Route::get('/clients/reservations',[ClientController::class,'reservation'])->name('rooms.reservation')->middleware('clientAuth');
 Route::post('/clients/store',[ClientController::class,'store'])->name('rooms.store')->middleware('clientAuth');
 Route::post('/clients/authenticate',[ClientController::class,'authenticate'])->name('clients.authenticate');
+Route::post('/clients/register',[ClientController::class,'register'])->name('clients.register');
+
 Auth::routes();
 
 //----------------------------CLIENTS-------------------------------------------------------------------------------//

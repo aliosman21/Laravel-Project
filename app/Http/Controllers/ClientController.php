@@ -2,15 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClientRequest;
 use App\Models\Client;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreReservationRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Room;
 use DateTime;
+use Illuminate\Support\Facades\Redirect;
 
 class ClientController extends Controller {
+
+
+    public function register(StoreClientRequest $request){
+
+        // dd($request);
+
+
+         Client::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'mobile'=>$request['mobile'],
+            'country'=>$request['country'],
+            'gender' => $request['gender'],
+            'avatar' => $request['avatar']
+        ]);
+
+
+        return redirect()->route('clients.index');
+    }
 
     public function index(){
         $rooms = Room::where('reserved', 0)->get();

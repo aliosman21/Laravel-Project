@@ -13,8 +13,14 @@
 
                         @section('auth_header', __('adminlte::adminlte.register_message'))
 
+
+
+
+
+
+
                         @section('auth_body')
-                            <form action="{{ $register_url }}" method="post">
+                            <form action="{{ route('clients.register') }}" method="post">
                                 {{ csrf_field() }}
 
                                 {{-- Name field --}}
@@ -146,7 +152,7 @@
                                     </div>
                                     @if ($errors->has('avatar'))
                                         <div class="invalid-feedback">
-                                            <strong>{{ $errors->first('avatar') }}</strong>
+                                            <strong>'{{ $errors->first('avatar') }}'</strong>
                                         </div>
                                     @endif
                                 </div>
@@ -158,6 +164,10 @@
                                 </button>
 
                             </form>
+
+                           
+
+
                         @stop
 
                         @section('auth_footer')
