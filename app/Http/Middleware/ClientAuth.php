@@ -17,9 +17,9 @@ class ClientAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::guard('client')->user() == null){
-            return redirect()->route('login');
-        }
+        // if(Auth::guard('client')->user() == null){
+        //     return redirect()->route('login');
+        // }
         return $next($request);
     }
 }

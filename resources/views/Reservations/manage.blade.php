@@ -6,17 +6,15 @@
     <h1>Dashboard</h1>
 @stop
 
-@section('content')
-
-
+@section('content')    
     <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
-                
-                <th>number</th>
+                <th>client_id</th>
+                <th>accompany_number</th>
                 <th>price</th>
-                <th>capacity</th>
-                <th>action</th>
+                <th>room_id</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -43,6 +41,9 @@
 @section('js')
     <script type="text/javascript">
         $(function() {
+            // $("table").addClass("mdl-data-table")
+            // $(".mdl-data-table").css("padding","10px")
+            // $(".container").css("margin-top","30px")
             var table = $('.yajra-datatable').DataTable({
                 autoWidth: false,
                 columnDefs: [{
@@ -51,27 +52,28 @@
                 }],
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('Rooms.list') }}",
+                ajax: "{{ route('reservations.list.ajax') }}",
                 columns: [
                     // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {
-                        data: 'number',
-                        name: 'number'
+                        data: 'client_id',
+                        name: 'client_id'
                     },
+                    {
+                        data: 'accompany_number',
+                        name: 'accompany_number'
+                    },
+                    
                     {
                         data: 'price',
                         name: 'price'
                     },
                     {
-                        data: 'capacity',
-                        name: 'capacity'
+                        data: 'room_id',
+                        name: 'room_id'
                     },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: true,
-                        searchable: true
-                    },
+                   
+                    
                 ]
             });
 

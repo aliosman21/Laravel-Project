@@ -7,20 +7,20 @@ use App\Models\Client;
 use App\Models\Floor;
 use App\Models\Room;
 use App\Models\User;
+use DataTables; 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class RoomController extends Controller {
 
     public function index(){
-        $rooms = Room::all();
-        $users = User::all();
-        return view('rooms.manage',compact('rooms','users'));
+        return view('rooms.manage');
     }
 
     public function create(){
         $floors = Floor::all();
-        $client = Client::where('email', 'default@default.com')->first();
-        return view('rooms.create',compact('floors','client'));
+        // $client = Client::where('email', 'default@default.com')->first();
+        return view('rooms.create',compact('floors'));
     }
 
     public function store(StoreRoomRequest $request){
@@ -29,6 +29,28 @@ class RoomController extends Controller {
         $requestData['price'] = $requestData['price'] * 100;
         Room::create($requestData);
         return redirect()->route('rooms.index');
+    }
+    public function getRoom(Request $request) {
+        
+        if ($request->ajax()) {
+
+            $data = Room::latest()->get();
+            return Datatables::of($data)
+                ->addColumn('action', 'helpers.roomsActionsButtons')
+                ->addColumn('RealPrice',function($data){
+                  $realPrice = $data->price / 100; 
+                  $view =  $realPrice;
+                    return  $view ;
+                })
+                ->addColumn('floorNumber',function($data){
+                    $floor = (int)( $data->number / 1000)  ; 
+                    $floorNumber = $floor * 1000 ;
+                    $view =   $floorNumber;
+                      return  $view ;
+                  })
+                ->rawColumns(['action','RealPrice','floorNumber'])
+                ->make(true);
+        }
     }
 
     public function edit(Room $room){

@@ -28,7 +28,7 @@ class HomeController extends Controller
         // $role = Role::create(['name' => 'admin']);
         // $role = Role::create(['name' => 'manager']);
         // $role = Role::create(['name' => 'receptionist']);
-        ######################################################################
+        // ######################################################################
         // $permission = Permission::create(['name' => 'approve client']);
         // $permission = Permission::create(['name' => 'create room']);
         // $permission = Permission::create(['name' => 'edit room']);
@@ -50,7 +50,7 @@ class HomeController extends Controller
         // $permission = Permission::create(['name' => 'edit reservation']);
         // $permission = Permission::create(['name' => 'delete reservation']);
         // $permission = Permission::create(['name' => 'view reservation']);
-        ########################################################################
+        // ########################################################################
         //  $permission1 = Permission::findById(1);
         //  $permission2 = Permission::findById(2);
         //  $permission3 = Permission::findById(3);

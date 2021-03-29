@@ -65,18 +65,11 @@
             {{-- user creator --}}
             <div class="form-group">
                 <label  for="post_creator">User Creator</label>
-                <select name="user_id" class="form-control" id="post_creator">
-                    <option value="{{Auth::guard('user')->user()->id}}">{{Auth::guard('user')->user()->name}}</option>
+                <select name="user_id" class="form-control" id="post_creator" disabled>
+                    <option value="{{Auth::guard('user')->user()->id}}">{{Auth::guard('user')->user()->name}} </option>
                 </select>
             </div>
 
-            {{-- Client --}}
-            <div class="form-group">
-                <label  for="post_creator">Client name</label>
-                <select name="user_id" class="form-control" id="post_creator">
-                        <option value="{{$client->id}}">{{$client->name}}</option>
-                </select>
-            </div>
 
             {{-- Create button --}}
             <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">

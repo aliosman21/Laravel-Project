@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container">
-<form action="{{route('users.update',)}}" method="post">
+<form action="{{route('users.update',['user'=>$user->id])}}" method="post">
  @csrf
  @if ($errors->any())
         <div class="alert alert-danger">
@@ -22,7 +22,7 @@
 {{-- Name field --}}
 <div class="input-group mb-3">
  <input type="text" name="name" class="form-control "
- placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
+ value="{{ $user->name }}" autofocus>
 <div class="input-group-append">
  <div class="input-group-text">
  <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
@@ -34,7 +34,7 @@
     {{-- Email field --}}
     <div class="input-group mb-3">
         <input type="email" name="email" class="form-control "
-            placeholder="{{ __('adminlte::adminlte.email') }}">
+            value="{{ $user->email }}">
         <div class="input-group-append">
             <div class="input-group-text">
                 <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>

@@ -7,15 +7,19 @@
 @stop
 
 @section('content')
-    {{dd($rooms,$users)}}
+@if(auth()->guard('user')->user()->hasRole('admin')||auth()->guard('user')->user()->hasRole('manager'))
+        <a href="{{ route('rooms.create') }}" class="edit btn btn-success btn-block">Create room</a>
+        <br/>
+    
+@endif
 
     <table class="table table-bordered yajra-datatable">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Number</th>
-            <th>Status</th>
-            <th>Created by</th>
+            <th>Room number</th>
+            <th>capacity</th>
+            <th>Price</th>
+            <th>floor number</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -43,9 +47,7 @@
 @section('js')
     <script type="text/javascript">
         $(function() {
-            // $("table").addClass("mdl-data-table")
-            // $(".mdl-data-table").css("padding","10px")
-            // $(".container").css("margin-top","30px")
+            // var price
             var table = $('.yajra-datatable').DataTable({
                 autoWidth: false,
                 columnDefs: [{
@@ -54,23 +56,23 @@
                 }],
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('floors.index') }}",
+                ajax: "{{ route('rooms.list') }}",
                 columns: [
                     {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
                         data: 'number',
-                        name: 'id'
+                        name: 'number'
                     },
                     {
-                        data: 'status',
-                        name: 'reserved'
+                        data: 'capacity',
+                        name: 'capacity'
                     },
                     {
-                        data: '',
-                        name: 'created'
+                        data: 'RealPrice',
+                        name: 'RealPrice'
+                    },
+                    {
+                        data: 'floorNumber',
+                        name: 'floorNumber'
                     },
                     {
                         data: 'action',
@@ -92,5 +94,5 @@
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.material.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 @stop

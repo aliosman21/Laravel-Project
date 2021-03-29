@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFloorRequest;
 use App\Models\Floor;
 use App\Models\User;
+use DataTables; 
 use Illuminate\Http\Request;
 
 class FloorController extends Controller
 {
     public function index(){
-        $floors = Floor::all();
-        $users = User::all();
-        return view('floors.manage',compact('floors','users'));
+        return view('floors.manage');
     }
 
     public function create(){
@@ -38,5 +37,16 @@ class FloorController extends Controller
     public function destroy(Floor $floor) {
         $floor->delete();
         return redirect()->route('floors.index');
+    }
+    public function getfloor(Request $request) {
+        
+        if ($request->ajax()) {
+
+            $data = Floor::latest()->get();
+            return Datatables::of($data)
+                ->addColumn('action', 'helpers.floorsActionsButtons')
+                ->rawColumns(['action'])
+                ->make(true);
+        }
     }
 }

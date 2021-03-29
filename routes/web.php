@@ -32,14 +32,16 @@ Route::get('/users',[UserController::class, 'index'])->name('users.index')->midd
 Route::get('/users/login',[UserController::class, 'login'])->name('users.login');
 Route::post('/users/authenticate',[UserController::class,'authenticate'])->name('users.authenticate');
 Route::get('/users/list', [UserController::class, 'getUsers'])->name('users.list'); // response to ajax requests
+Route::get('/nonapproved/list', [UserController::class, 'getNonApprovedClients'])->name('nonapproved.list'); 
+Route::get('/approved/list', [UserController::class, 'getApprovedClients'])->name('approved.list');// response to ajax requests
 Route::get('/users/create',[UserController::class, 'create'])->name('users.create');
 Route::post('/users/store',[UserController::class, 'store'])->name('users.store');
 Route::get('/users/{user}/edit',[UserController::class , 'edit'])->name('users.edit');
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-Route::get('/users/listUnApprovedClients',[UserController::class, 'getNonApprovedClients'])->name('users.nonApprovedClients'); //list Non approved clients
-Route::get('/users/listApprovedClients',[UserController::class, 'getApprovedClients'])->name('users.ApprovedClients'); //list approved clients
-Route::post('/users/approveClient',[UserController::class, 'approveClient'])->name('users.approveClient'); //change non approved clients to approved
+Route::get('/users/listUnApprovedClients',[UserController::class, 'getNonApprovedClientsView'])->name('users.nonApprovedClients'); //list Non approved clients
+Route::get('/users/listApprovedClients',[UserController::class, 'getGetApprovedClientsView'])->name('users.ApprovedClients'); //list approved clients
+Route::get('/users/{client}/approveClient',[UserController::class, 'approveClient'])->name('users.approveClient'); //change non approved clients to approved
 //----------------------------USERS-------------------------------------------------------------------------------//
 
 //----------------------------FLOORS-------------------------------------------------------------------------------//
@@ -49,6 +51,7 @@ Route::post('/floors/store',[FloorController::class,'store'])->name('floors.stor
 Route::get('/floors/{floor}/edit',[FloorController::class , 'edit'])->name('floors.edit');
 Route::put('/floors/{floor}', [FloorController::class, 'update'])->name('floors.update');
 Route::delete('/floors/{floor}', [FloorController::class, 'destroy'])->name('floors.destroy');
+Route::get('/floors/list', [FloorController::class, 'getfloor'])->name('floors.list'); 
 
 //----------------------------FLOORS-------------------------------------------------------------------------------//
 
@@ -59,17 +62,20 @@ Route::post('/rooms/store',[RoomController::class,'store'])->name('rooms.store')
 Route::get('/rooms/{room}/edit',[RoomController::class , 'edit'])->name('rooms.edit');
 Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update');
 Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
+Route::get('/rooms/list', [RoomController::class, 'getRoom'])->name('rooms.list'); 
 //----------------------------ROOMS-------------------------------------------------------------------------------//
 
 
 //----------------------------CLIENTS-------------------------------------------------------------------------------//
 
 Route::get('/clients',[ClientController::class , 'index'])->name('clients.index')->middleware('clientAuth');
-Route::get('/clients/create/{room}',[ClientController::class,'create'])->name('rooms.create')->middleware('clientAuth');
+Route::get('/clients/create/{room}',[ClientController::class,'create'])->name('reservations.create')->middleware('clientAuth');
 Route::get('/clients/reservations',[ClientController::class,'reservation'])->name('rooms.reservation')->middleware('clientAuth');
-Route::post('/clients/store',[ClientController::class,'store'])->name('rooms.store')->middleware('clientAuth');
-Route::post('/clients/authenticate',[ClientController::class,'authenticate'])->name('clients.authenticate');
-Route::post('/clients/register',[ClientController::class,'register'])->name('clients.register');
+Route::post('/clients/store',[ClientController::class,'store'])->name('reservations.store')->middleware('clientAuth')->middleware('clientAuth');
+Route::post('/clients/authenticate',[ClientController::class,'authenticate'])->name('clients.authenticate')->middleware('clientAuth');
+Route::post('/clients/register',[ClientController::class,'register'])->name('clients.register')->middleware('clientAuth');
+Route::get('/clients/reservations/list', [ClientController::class, 'getReservation'])->name('reservations.list')->middleware('clientAuth');
+Route::get('/clients/reservations/getRooms', [ClientController::class, 'getRooms'])->name('Rooms.list')->middleware('clientAuth');
 
 Auth::routes();
 
@@ -79,6 +85,13 @@ Auth::routes();
 
 Route::get('checkout',[App\Http\Controllers\CheckoutController::class, 'checkout'])->name('clients.checkout');
 Route::post('checkout',[App\Http\Controllers\CheckoutController::class, 'afterPayment'])->name('checkout.credit-card');
+
+
+//------------------------reservations---------------------------------------------//
+
+Route::get('reservations',[App\Http\Controllers\ReservationController::class, 'index'])->name('user.reservations')->middleware('auth');;
+Route::get('reservations/list',[App\Http\Controllers\ReservationController::class, 'getReservation'])->name('reservations.list.ajax')->middleware('auth');;
+
 
 /*
 

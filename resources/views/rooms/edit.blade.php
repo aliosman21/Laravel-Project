@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container">
-    <form action="{{route('rooms.update',)}}" method="post">
+    <form action="{{route('rooms.update',['room'=>$room])}}" method="post">
         @csrf
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -22,7 +22,7 @@
         {{-- capacity field --}}
         <div class="input-group mb-3">
             <input type="text" name="capacity" class="form-control "
-                   placeholder="capacity" autofocus>
+                   value="{{$room->capacity}}" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
@@ -33,7 +33,7 @@
         {{-- price field --}}
         <div class="input-group mb-3">
             <input type="text" name="price" class="form-control "
-                   placeholder="price" autofocus>
+                   value="{{($room->price)/100}}" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>

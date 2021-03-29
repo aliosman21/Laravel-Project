@@ -7,16 +7,15 @@
 @stop
 
 @section('content')
-
-
+    
     <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
-                
-                <th>number</th>
-                <th>price</th>
-                <th>capacity</th>
-                <th>action</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>country</th>
+                <th>mobile</th>
+                <th>gender</th>
             </tr>
         </thead>
         <tbody>
@@ -51,26 +50,28 @@
                 }],
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('Rooms.list') }}",
+                ajax: "{{ route('approved.list') }}",
                 columns: [
                     // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {
-                        data: 'number',
-                        name: 'number'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
-                        data: 'price',
-                        name: 'price'
+                        data: 'email',
+                        name: 'email'
                     },
                     {
-                        data: 'capacity',
-                        name: 'capacity'
+                        data: 'country',
+                        name: 'country'
                     },
                     {
-                        data: 'action',
-                        name: 'action',
-                        orderable: true,
-                        searchable: true
+                        data: 'mobile',
+                        name: 'mobile'
+                    },
+                    {
+                        data: 'gender',
+                        name: 'gender'
                     },
                 ]
             });

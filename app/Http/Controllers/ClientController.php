@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Room;
 use DateTime;
+use DataTables;
 use Illuminate\Support\Facades\Redirect;
 
 class ClientController extends Controller {
@@ -36,8 +37,14 @@ class ClientController extends Controller {
     }
 
     public function index(){
-        $rooms = Room::where('reserved', 0)->get();
-        return view('clients.index',compact('rooms'));
+        return view('clients.index');
+    }
+    public function getRooms(){
+        $room = Room::where('reserved', 0)->get();;
+         return Datatables::of($room)
+                ->addColumn('action', 'helpers.getRooms')
+                ->rawColumns(['action']) 
+                ->make(true);
     }
 
     public function create($room){
@@ -47,9 +54,14 @@ class ClientController extends Controller {
     }
 
     public function reservation(){
-        $reservations = Reservation::where('id', Auth::guard('client')->user()->id)->get();
-        return view('clients.list',compact('reservations'));
+        return view('clients.list');
     }
+    public function getReservation(){
+        $reservation = Reservation::where('id', Auth::guard('client')->user()->id)->get();
+         return Datatables::of($reservation)
+                ->make(true);
+    }
+
 
     public function store(Request $request){
         $end_date = new DateTime($request->end_date);

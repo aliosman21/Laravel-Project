@@ -16,15 +16,15 @@ class UserController extends Controller
 {
 
     public function index() {
-        $users = User::all();
-        return view('users.manage',compact('users'));
+        // $users = User::all();
+        // return view('users.manage',compact('users'));
         // Auth::guard('user')->user()->assignRole(Role::findById(1));
         // $users = User::all()
         // dd(Auth::guard('user')->user()->getAllPermissions());
         // dd(Auth::guard('user')->user()->hasRole('admin'));
         // dd(auth()->guard('user')->user()->hasRole('admin'));
-        // Auth::guard('user')->user()->removeRole('admin');
-        // Auth::guard('user')->user()->assignRole('manager');
+        // Auth::guard('user')->user()->removeRole(Role::findById(2));
+        // Auth::guard('user')->user()->assignRole(Role::findById(2));
         // dd(Auth::guard('user')->user()->hasRole('manager'));
 
         return view('users.manage');
@@ -58,12 +58,21 @@ class UserController extends Controller
 
     }
 
+    public function getNonApprovedClientsView(){
+        return view('users.nonApproved');
+    }
+
+
+    public function getGetApprovedClientsView(){
+        return view('users.approved');
+    }
+
     public function getNonApprovedClients(){
         $clients = Client::where('approved', 0)->get();
 
          return Datatables::of($clients)
-                /* ->addColumn('action', 'helpers.actionsButtons')
-                ->rawColumns(['action']) */
+                ->addColumn('action', 'helpers.approveClient')
+                ->rawColumns(['action']) 
                 ->make(true);
     }
 
@@ -71,15 +80,13 @@ class UserController extends Controller
         $clients = Client::where('approved', 1)->get();
 
          return Datatables::of($clients)
-                /* ->addColumn('action', 'helpers.actionsButtons')
-                ->rawColumns(['action']) */
                 ->make(true);
     }
 
-    public function approveClient(Request $request){
-
-        $client = Client::where('email' , $request->email)->first();
-
+    public function approveClient(Client $client){
+        // dd($user);
+        $client = Client::where('email' , $client->email)->first();
+        $client->user_id=Auth::guard('user')->user()->id;
         if (!$client == null) {
             if ($client->approved == 0) {
                 $client->approved = 1;
@@ -87,7 +94,7 @@ class UserController extends Controller
                 $this->sendMail($client);
             }
         }
-        return  redirect()->route('home');  // to the datatable page
+        return  redirect()->route('users.nonApprovedClients');  // to the datatable page
     }
 
     private function sendMail($client){
@@ -128,14 +135,14 @@ class UserController extends Controller
             $data = User::latest()->get();
             return Datatables::of($data)
                 ->addColumn('action', 'helpers.actionsButtons')
-                ->rawColumns(['action'])
+                ->editColumn('avatar_img','helpers.avatars')
+                ->rawColumns(['action','avatar_img'])
                 ->make(true);
         }
     }
 
     public function edit(User $user){
-        $users = User::all();
-        return view('users.edit', compact('user', 'users'));
+        return view('users.edit', compact('user'));
     }
 
     public function update(User $user, StoreUserRequest $request){

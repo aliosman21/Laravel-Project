@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container">
-    <form action="{{route('floors.update',)}}" method="post">
+    <form action="{{route('floors.update',['floor'=>$floor])}}" method="post">
         @csrf
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -22,7 +22,7 @@
         {{-- Name field --}}
         <div class="input-group mb-3">
             <input type="text" name="name" class="form-control "
-                   placeholder="Floor name" autofocus>
+                   value="{{ $floor->name }}" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>

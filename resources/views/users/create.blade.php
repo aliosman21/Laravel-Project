@@ -73,7 +73,9 @@
 <div class="input-group mb-3">
     <select id="role" name="role" class="form-control "
        placeholder="role" autofocus>
-        <option value="manager">Manager</option>
+       @if(auth()->guard('user')->user()->hasRole('admin'))
+            <option value="manager">Manager</option>
+        @endif
         <option value="receptionist">Receptionist</option>
     </select>
     <div class="input-group-append">
@@ -104,7 +106,7 @@
     <div class="form-group">
         <label  for="post_creator">User Creator</label>
         <select name="user_id" class="form-control" id="post_creator">
-                <option value="{{Auth::guard('user')->user()}}">{{Auth::guard('user')->user()}}</option>
+                <option value="{{Auth::guard('user')->user()}}">{{Auth::guard('user')->user()->name}}</option>
         </select>
     </div>
 

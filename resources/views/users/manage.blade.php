@@ -7,15 +7,21 @@
 @stop
 
 @section('content')
-    {{ Auth::guard('user')->user() }}
+@if(auth()->guard('user')->user()->hasRole('admin')||auth()->guard('user')->user()->hasRole('manager'))
+        <a href="{{ route('users.create') }}" class="edit btn btn-success btn-block">Create user</a>
+        <br/>
+    
+@endif
+
+    
     <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
+                <th>Image</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>NationalID</th>
                 <th>Role</th>
-                <th>Ban</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -58,6 +64,10 @@
                 columns: [
                     // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {
+                        data: 'avatar_img',
+                        name: 'avatar_img'
+                    },
+                    {
                         data: 'name',
                         name: 'name'
                     },
@@ -72,11 +82,6 @@
                     {
                         data: 'role',
                         name: 'role'
-                    },
-
-                    {
-                        data: 'ban',
-                        name: 'ban'
                     },
                     {
                         data: 'action',
