@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFloorRequest;
 use App\Models\Floor;
+use App\Models\Room;
 use App\Models\User;
-use DataTables; 
+use DataTables;
 use Illuminate\Http\Request;
 
 class FloorController extends Controller
@@ -35,11 +36,16 @@ class FloorController extends Controller
     }
 
     public function destroy(Floor $floor) {
+        $rooms = Room::where('floor_id',$floor->id)->firstOrFail();
+        if($rooms){
+            $msg = "this floor cant be deleted";
+            return view('floors.manage',compact('msg'));
+        }
         $floor->delete();
         return redirect()->route('floors.index');
     }
     public function getfloor(Request $request) {
-        
+
         if ($request->ajax()) {
 
             $data = Floor::latest()->get();

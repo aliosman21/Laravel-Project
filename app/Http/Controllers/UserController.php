@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index() {
         // $users = User::all();
         // return view('users.manage',compact('users'));
-        // Auth::guard('user')->user()->assignRole(Role::findById(1));
+//         Auth::guard('user')->user()->assignRole(Role::findById(1));
         // $users = User::all()
         // dd(Auth::guard('user')->user()->getAllPermissions());
         // dd(Auth::guard('user')->user()->hasRole('admin'));
@@ -72,7 +72,7 @@ class UserController extends Controller
 
          return Datatables::of($clients)
                 ->addColumn('action', 'helpers.approveClient')
-                ->rawColumns(['action']) 
+                ->rawColumns(['action'])
                 ->make(true);
     }
 
