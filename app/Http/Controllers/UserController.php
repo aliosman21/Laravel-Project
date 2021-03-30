@@ -30,29 +30,33 @@ class UserController extends Controller
         return view('users.manage');
     }
     public function active(){
-        $clients = Client::where('banned_at', null)->get();
-        return Datatables::of($clients)
+
+        $users = User::withoutBanned()->get();
+        return Datatables::of($users)
              /*    ->addColumn('action', 'helpers.approveClient')
                 ->rawColumns(['action']) */
                 ->make(true);
     }
 
     public function banned(){
-         $clients = Client::where('banned_at', !null)->get();
-        return Datatables::of($clients)
+        $users = User::onlyBanned()->get();
+        return Datatables::of($users)
              /*    ->addColumn('action', 'helpers.approveClient')
                 ->rawColumns(['action']) */
                 ->make(true);
     }
 
     public function ban(Request $request){
-        $client = Client::where('email' , $request->email)->first();
-        $client->ban();
+        $user = User::where('email' , $request->email)->first();
+        if($user->role != "receptionist")
+            return "cannot ban roles other than receptionists";
+        $user->ban();
+        return "Receptionist banned";
     }
 
     public function unban(Request $request){
-        $client = Client::where('email' , $request->email)->first();
-        $client->unban();
+        $user = User::where('email' , $request->email)->first();
+        $user->unban();
     }
 
     public function login(){

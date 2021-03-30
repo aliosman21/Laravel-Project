@@ -6,19 +6,26 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Cog\Contracts\Ban\Bannable as BannableContract;
+use Cog\Laravel\Ban\Traits\Bannable;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Sanctum\HasApiTokens;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements BannableContract
 {
-    use HasFactory, Notifiable,HasRoles,HasApiTokens;
+    use HasFactory, Notifiable,HasRoles,HasApiTokens,Bannable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
+     public function shouldApplyBannedAtScope()
+    {
+        return true;
+    }
     protected $fillable = [
         'name',
         'email',

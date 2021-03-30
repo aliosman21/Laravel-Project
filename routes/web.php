@@ -28,7 +28,7 @@ Route::get('/', function () {
 Auth::routes();
 //----------------------------USERS-------------------------------------------------------------------------------//
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/users',[UserController::class, 'index'])->name('users.index')->middleware('auth');
+Route::get('/users',[UserController::class, 'index'])->name('users.index')->middleware(['auth',"forbid-banned-user"]);//Middleware set as example to restrict access for banned accounts
 Route::get('/users/login',[UserController::class, 'login'])->name('users.login');
 Route::post('/users/authenticate',[UserController::class,'authenticate'])->name('users.authenticate');
 Route::get('/users/list', [UserController::class, 'getUsers'])->name('users.list'); // response to ajax requests

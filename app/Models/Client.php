@@ -10,7 +10,7 @@ use Cog\Contracts\Ban\Bannable as BannableContract;
 use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Authenticatable implements BannableContract
+class Client extends Authenticatable
 {
     use HasFactory,Notifiable;
 
