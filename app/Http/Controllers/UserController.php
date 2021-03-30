@@ -44,19 +44,26 @@ class UserController extends Controller
              /*    ->addColumn('action', 'helpers.approveClient')
                 ->rawColumns(['action']) */
                 ->make(true);
+
     }
 
     public function ban(Request $request){
+        //dd($request->email);
         $user = User::where('email' , $request->email)->first();
+        //dd($user->role);
+        $err = "User cannot be banned";
+        $success = "User banned successfully";
         if($user->role != "receptionist")
-            return "cannot ban roles other than receptionists";
+            return view('users.manage',compact('err'));
         $user->ban();
-        return "Receptionist banned";
+        return view('users.manage',compact('success'));
     }
 
     public function unban(Request $request){
         $user = User::where('email' , $request->email)->first();
         $user->unban();
+        $success = "User unbanned successfully";
+        return view('users.manage',compact('success'));
     }
 
     public function login(){
@@ -160,8 +167,8 @@ class UserController extends Controller
     public function getUsers(Request $request) {
         //3awzien el zaraer gwa blade.php ya nakash
         if ($request->ajax()) {
-
-            $data = User::latest()->get();
+            $data = User::withBanned()->get();
+            //$data = User::latest()->get();
             return Datatables::of($data)
                 ->addColumn('action', 'helpers.actionsButtons')
                 ->editColumn('avatar_img','helpers.avatars')

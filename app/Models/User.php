@@ -22,10 +22,6 @@ class User extends Authenticatable implements BannableContract
      * @var array
      */
 
-     public function shouldApplyBannedAtScope()
-    {
-        return true;
-    }
     protected $fillable = [
         'name',
         'email',

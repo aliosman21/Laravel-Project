@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('national_id');
             $table->string('avatar_img')->nullable();
             $table->enum('role', ['admin', 'manager','receptionist']);
-            $table->boolean('ban')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -7,13 +7,31 @@
 @stop
 
 @section('content')
-@if(auth()->guard('user')->user()->hasRole('admin')||auth()->guard('user')->user()->hasRole('manager'))
+    @if (isset($err))
+        <div class="alert alert-danger">
+            {{ $err }}
+        </div>
+    @endif
+    @if (isset($success))
+        <div class="alert alert-success">
+            {{ $success }}
+        </div>
+    @endif
+    @if (auth()
+            ->guard('user')
+            ->user()
+            ->hasRole('admin') ||
+        auth()
+            ->guard('user')
+            ->user()
+            ->hasRole('manager'))
         <a href="{{ route('users.create') }}" class="edit btn btn-success btn-block">Create user</a>
-        <br/>
-    
-@endif
+        <br />
 
-    
+    @endif
+
+
+
     <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>

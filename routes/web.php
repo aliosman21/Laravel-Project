@@ -45,9 +45,9 @@ Route::get('/users/{client}/approveClient',[UserController::class, 'approveClien
 
 
 
-Route::get('/users/active_users',[UserController::class, 'active'])->name('users.active');
+/* Route::get('/users/banned_users',[UserController::class, 'banned'])->name('users.banned');
+Route::get('/users/active_users',[UserController::class, 'active'])->name('users.active'); */
 Route::post('/users/ban',[UserController::class, 'ban'])->name('users.ban');
-Route::get('/users/banned_users',[UserController::class, 'banned'])->name('users.banned');
 Route::post('/users/unban',[UserController::class, 'unban'])->name('users.unban');
 //----------------------------USERS-------------------------------------------------------------------------------//
 
