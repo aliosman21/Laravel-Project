@@ -42,6 +42,13 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.
 Route::get('/users/listUnApprovedClients',[UserController::class, 'getNonApprovedClientsView'])->name('users.nonApprovedClients'); //list Non approved clients
 Route::get('/users/listApprovedClients',[UserController::class, 'getGetApprovedClientsView'])->name('users.ApprovedClients'); //list approved clients
 Route::get('/users/{client}/approveClient',[UserController::class, 'approveClient'])->name('users.approveClient'); //change non approved clients to approved
+
+
+
+Route::get('/users/active_clients',[UserController::class, 'active'])->name('users.active');
+Route::post('/users/ban',[UserController::class, 'ban'])->name('users.ban');
+Route::get('/users/banned_clients',[UserController::class, 'banned'])->name('users.banned');
+Route::post('/users/unban',[UserController::class, 'unban'])->name('users.unban');
 //----------------------------USERS-------------------------------------------------------------------------------//
 
 //----------------------------FLOORS-------------------------------------------------------------------------------//

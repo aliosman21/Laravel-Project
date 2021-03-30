@@ -29,6 +29,31 @@ class UserController extends Controller
 
         return view('users.manage');
     }
+    public function active(){
+        $clients = Client::where('banned_at', null)->get();
+        return Datatables::of($clients)
+             /*    ->addColumn('action', 'helpers.approveClient')
+                ->rawColumns(['action']) */
+                ->make(true);
+    }
+
+    public function banned(){
+         $clients = Client::where('banned_at', !null)->get();
+        return Datatables::of($clients)
+             /*    ->addColumn('action', 'helpers.approveClient')
+                ->rawColumns(['action']) */
+                ->make(true);
+    }
+
+    public function ban(Request $request){
+        $client = Client::where('email' , $request->email)->first();
+        $client->ban();
+    }
+
+    public function unban(Request $request){
+        $client = Client::where('email' , $request->email)->first();
+        $client->unban();
+    }
 
     public function login(){
         return view('users.staffLogin');
