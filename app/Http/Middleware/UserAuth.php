@@ -6,6 +6,7 @@ use Closure;
 use Auth;
 use Illuminate\Http\Request;
 
+
 class UserAuth
 {
     /**
@@ -15,11 +16,13 @@ class UserAuth
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
-    {
-        if(Auth::guard('user')->user() == null){
-            return redirect()->route('users.login');
-        }
-        return $next($request);
-    }
+     public function handle(Request $request, Closure $next)
+     {
+         
+        if(Auth::guard('user')->user() == null && $request->server->get('HTTP_AUTHORIZATION') == null ){
+          return redirect()->route('users.login');
+         }
+        
+         return $next($request);
+     }
 }
