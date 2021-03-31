@@ -48,7 +48,16 @@ class RoomController extends Controller {
                     $view =   $floorNumber;
                       return  $view ;
                   })
-                ->rawColumns(['action','RealPrice','floorNumber'])
+                  ->editColumn('user_id',function($data){
+                    if ($data->user_id != null){
+                    $creator = User::where('id',$data->user_id)->first();
+                    return $creator->name;
+                    }else {
+                        return $data->name;
+                    }
+                    
+                })
+                ->rawColumns(['action','RealPrice','floorNumber','user_id'])
                 ->make(true);
         }
     }

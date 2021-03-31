@@ -17,14 +17,7 @@
             {{ $success }}
         </div>
     @endif
-    @if (auth()
-            ->guard('user')
-            ->user()
-            ->hasRole('admin') ||
-        auth()
-            ->guard('user')
-            ->user()
-            ->hasRole('manager'))
+    @if (auth()->guard('user')->user()->hasRole('admin') ||auth()->guard('user')->user()->hasRole('manager'))
         <a href="{{ route('users.create') }}" class="edit btn btn-success btn-block">Create user</a>
         <br />
 
@@ -40,6 +33,7 @@
                 <th>Email</th>
                 <th>NationalID</th>
                 <th>Role</th>
+                <th>Created by</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -67,6 +61,8 @@
 @section('js')
     <script type="text/javascript">
         $(function() {
+            var php_var = "{{ auth()->guard('user')->user()->hasRole('manager') ||  auth()->guard('user')->user()->hasRole('receptionist')}}";
+            // console.log({{ auth()->guard('user')->user()->hasRole('manager') }});
             // $("table").addClass("mdl-data-table")
             // $(".mdl-data-table").css("padding","10px")
             // $(".container").css("margin-top","30px")
@@ -100,6 +96,17 @@
                     {
                         data: 'role',
                         name: 'role'
+                    },
+                    {
+                        data: 'created_by',
+                        name: 'created_by',
+                        render: function (data, type, row) {
+                            if (php_var) {
+                                return 'you dont have permission';    
+                            }else {
+                                return data;
+                            }
+                    }
                     },
                     {
                         data: 'action',

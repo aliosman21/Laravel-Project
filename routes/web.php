@@ -32,7 +32,7 @@ Route::get('/users',[UserController::class, 'index'])->name('users.index')->midd
 Route::get('/users/login',[UserController::class, 'login'])->name('users.login');
 Route::post('/users/authenticate',[UserController::class,'authenticate'])->name('users.authenticate');
 Route::get('/users/list', [UserController::class, 'getUsers'])->name('users.list'); // response to ajax requests
-Route::get('/nonapproved/list', [UserController::class, 'getNonApprovedClients'])->name('nonapproved.list');
+Route::get('/nonapproved/list', [UserController::class, 'getNonApprovedClients'])->name('nonapproved.list'); 
 Route::get('/approved/list', [UserController::class, 'getApprovedClients'])->name('approved.list');// response to ajax requests
 Route::get('/users/create',[UserController::class, 'create'])->name('users.create');
 Route::post('/users/store',[UserController::class, 'store'])->name('users.store');
@@ -58,7 +58,7 @@ Route::post('/floors/store',[FloorController::class,'store'])->name('floors.stor
 Route::get('/floors/{floor}/edit',[FloorController::class , 'edit'])->name('floors.edit');
 Route::put('/floors/{floor}', [FloorController::class, 'update'])->name('floors.update');
 Route::delete('/floors/{floor}', [FloorController::class, 'destroy'])->name('floors.destroy');
-Route::get('/floors/list', [FloorController::class, 'getfloor'])->name('floors.list');
+Route::get('/floors/list', [FloorController::class, 'getfloor'])->name('floors.list'); 
 
 //----------------------------FLOORS-------------------------------------------------------------------------------//
 
@@ -69,7 +69,7 @@ Route::post('/rooms/store',[RoomController::class,'store'])->name('rooms.store')
 Route::get('/rooms/{room}/edit',[RoomController::class , 'edit'])->name('rooms.edit');
 Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update');
 Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
-Route::get('/rooms/list', [RoomController::class, 'getRoom'])->name('rooms.list');
+Route::get('/rooms/list', [RoomController::class, 'getRoom'])->name('rooms.list'); 
 //----------------------------ROOMS-------------------------------------------------------------------------------//
 
 

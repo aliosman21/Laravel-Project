@@ -23,6 +23,7 @@
         <tr>
             <th>number</th>
             <th>name</th>
+            <th>created by</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -50,6 +51,8 @@
 @section('js')
     <script type="text/javascript">
         $(function() {
+            var php_var = "{{ auth()->guard('user')->user()->hasRole('manager') ||  auth()->guard('user')->user()->hasRole('receptionist')}}";
+
             var table = $('.yajra-datatable').DataTable({
                 autoWidth: false,
                 columnDefs: [{
@@ -67,6 +70,17 @@
                     {
                         data: 'name',
                         name: 'name'
+                    },
+                    {
+                        data: 'user_id',
+                        name: 'user_id',
+                        render: function (data, type, row) {
+                            if (php_var) {
+                                return 'you dont have permission';    
+                            }else {
+                                return data;
+                            }
+                        }
                     },
                     {
                         data: 'action',

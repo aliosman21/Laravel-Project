@@ -78,6 +78,14 @@ class ClientController extends Controller {
     public function getReservation(){
         $reservation = Reservation::where('client_id', Auth::guard('client')->user()->id)->where('status','paid')->get();
          return Datatables::of($reservation)
+                ->editColumn('price',function ($data){
+                    return $data->price / 100 ;
+                })
+                ->editColumn('room_id',function ($data){
+                    $roomNumber = Room::where('id',$data->room_id)->first();
+                    return $roomNumber->number;
+                })
+                ->rawColumns(['price','room_id'])
                 ->make(true);
     }
 

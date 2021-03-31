@@ -25,6 +25,7 @@
             <th>capacity</th>
             <th>Price</th>
             <th>floor number</th>
+            <th>Created by</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -52,6 +53,7 @@
 @section('js')
     <script type="text/javascript">
         $(function() {
+            var php_var = "{{ auth()->guard('user')->user()->hasRole('manager') ||  auth()->guard('user')->user()->hasRole('receptionist')}}";
             // var price
             var table = $('.yajra-datatable').DataTable({
                 autoWidth: false,
@@ -78,6 +80,17 @@
                     {
                         data: 'floorNumber',
                         name: 'floorNumber'
+                    },
+                    {
+                        data: 'user_id',
+                        name: 'user_id',
+                        render: function (data, type, row) {
+                            if (php_var) {
+                                return 'you dont have permission';    
+                            }else {
+                                return data;
+                            }
+                        }
                     },
                     {
                         data: 'action',

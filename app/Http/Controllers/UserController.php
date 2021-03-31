@@ -18,13 +18,13 @@ class UserController extends Controller
     public function index() {
         // $users = User::all();
         // return view('users.manage',compact('users'));
-//         Auth::guard('user')->user()->assignRole(Role::findById(1));
+        // Auth::guard('user')->user()->assignRole(Role::findById(1));
         // $users = User::all()
         // dd(Auth::guard('user')->user()->getAllPermissions());
         // dd(Auth::guard('user')->user()->hasRole('admin'));
         // dd(auth()->guard('user')->user()->hasRole('admin'));
-        // Auth::guard('user')->user()->removeRole(Role::findById(2));
-        // Auth::guard('user')->user()->assignRole(Role::findById(2));
+        //Auth::guard('user')->user()->removeRole(Role::findById(3));
+        // Auth::guard('user')->user()->assignRole(Role::findById(3));
         // dd(Auth::guard('user')->user()->hasRole('manager'));
 
         return view('users.manage');
@@ -114,9 +114,13 @@ class UserController extends Controller
 
     public function getApprovedClients(){
         $clients = Client::where('approved', 1)->get();
-
-         return Datatables::of($clients)
-                ->make(true);
+        if (auth()->guard('user')->user()->hasRole('receptionist')){
+        $getClients = Client::where('user_id',auth()->guard('user')->user()->id )->get();
+        return Datatables::of($getClients)
+        ->make(true);
+        }
+        return Datatables::of($clients)
+        ->make(true);
     }
 
     public function approveClient(Client $client){
@@ -187,9 +191,10 @@ class UserController extends Controller
             'created_by' => $requestData['user_id'][6] /// need to be checked with ali
             
         ]);
+        Auth::guard('user')->user()->assignRole($requestData['role']);
         return redirect()->route('home');
     }
-
+    
     public function getUsers(Request $request) {
         //3awzien el zaraer gwa blade.php ya nakash
         if ($request->ajax()) {
@@ -198,7 +203,16 @@ class UserController extends Controller
             return Datatables::of($data)
                 ->addColumn('action', 'helpers.actionsButtons')
                 ->editColumn('avatar_img','helpers.avatars')
-                ->rawColumns(['action','avatar_img'])
+                ->editColumn('created_by',function($data){
+                    if ($data->created_by != null){
+                    $creator = User::where('id',$data->created_by)->first();
+                    return $creator->name;
+                    }else {
+                        return $data->name;
+                    }
+                    
+                })
+                ->rawColumns(['action','avatar_img','created_by'])
                 ->make(true);
         }
     }
