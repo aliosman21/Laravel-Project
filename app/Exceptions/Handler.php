@@ -38,12 +38,5 @@ class Handler extends ExceptionHandler
             //
         });
     }
-    public function render($request, Throwable $exception)
-{
-    if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
-       return redirect()->route('users.login');
-    }
-
-    // return parent::render($request, $exception);
-}
+ 
 }

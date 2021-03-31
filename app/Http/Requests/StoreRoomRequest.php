@@ -24,7 +24,7 @@ class StoreRoomRequest extends FormRequest
     public function rules()
     {
         $rules =[
-            'number' => 'unique:rooms|max:3',
+            'number' => 'unique:rooms|max:3|required',
             'price' => 'required',
             'capacity' => 'required',
             'floor_id' => 'required'
@@ -32,9 +32,5 @@ class StoreRoomRequest extends FormRequest
 
         return $rules;
     }
-    public function messages(){
-        return [
-            'price.required'=>'a7aaaa'
-        ];
-    }
+   
 }
