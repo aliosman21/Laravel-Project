@@ -192,11 +192,13 @@ class UserController extends Controller
 
         ]);
         if($requestData['role']=='manager'){
-            Auth::guard('user')->user()->assignRole(Role::findById(2));
+           $user= User::where('email',$requestData['email'])->first();
+           $user->assignRole(Role::findById(2));
         }
        
         else{
-            Auth::guard('user')->user()->assignRole(Role::findById(3));
+            $user= User::where('email',$requestData['email'])->first();
+           $user->assignRole(Role::findById(3));
         }
         return redirect()->route('home');
     }
