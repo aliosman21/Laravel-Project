@@ -245,7 +245,7 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => '#',
             'icon' => 'fas fa-fw fa-user',
         ],
         // [
@@ -289,19 +289,27 @@ return [
             'submenu' => [
                 [
                     'text' => 'Manage Users',
-                    'url'  => '#',
+                    'url'  => '/users',
                 ],
                 [
                     'text' => 'Manage Floors',
-                    'url'  => '#',
+                    'url'  => '/floors',
                 ],
                 [
                     'text' => 'Manage Rooms',
-                    'url'  => '#',
+                    'url'  => '/rooms',
                 ],
                 [
                     'text' => 'Manage Clients',
-                    'url'  => '#',
+                    'url'  => '/users/listUnApprovedClients',
+                ],
+                [
+                    'text' => 'Approved Clients',
+                    'url'  => '/users/listApprovedClients',
+                ],
+                [
+                    'text' => 'Clients Reservations',
+                    'url'  => '/reservations',
                 ],
             ],
         ],
@@ -310,16 +318,16 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'Client reservations',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'My Approved Clients',
-                    'url'  => '#',
-                ],
-                [
                     'text' => 'Manage Clients',
-                    'url'  => '#',
+                    'url'  => '/users/listUnApprovedClients',
+                ],
+                [
+                    'text' => 'Clients Reservations',
+                    'url'  => '/reservations',
+                ],
+                [
+                    'text' => 'Approved Clients',
+                    'url'  => '/users/listApprovedClients',
                 ],
             ],
         ],
@@ -329,11 +337,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'My Reservations',
-                    'url'  => '#',
+                    'url'  => '/clients/reservations',
                 ],
                 [
                     'text' => 'Make Reservation',
-                    'url'  => '#',
+                    'url'  => '/clients',
                 ],
             ],
         ],

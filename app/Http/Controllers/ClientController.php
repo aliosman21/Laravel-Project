@@ -25,21 +25,21 @@ class ClientController extends Controller {
         if($request->hasfile('avatar_img')){
 
             // dd('yes file');
- 
+
              $fname =  $request->file('avatar_img')->getClientOriginalName();
              $request->file('avatar_img')->storeAS('',$fname,'public_uploads');
               //Storage::disk('public_uploads')->put($path, $request->avatar_img);
- 
+
              //dd('yes file');
- 
+
          }
- 
+
          else{
- 
+
              dd('no file');
          }
- 
- 
+
+
           Client::create([
              'name' => $request['name'],
              'email' => $request['email'],
@@ -50,9 +50,9 @@ class ClientController extends Controller {
              'avatar_img' => $fname,
              'user_id'=>$request['user_id']//need to be checked with ali
          ]);
- 
- 
-         return redirect()->route('clients.index');
+
+
+         return redirect()->route('login');
     }
 
     public function index(){
@@ -128,7 +128,8 @@ class ClientController extends Controller {
         );
 
         //dd(Auth::guard('client')->attempt($dataAttempt));
-        if(Auth::guard('client')->attempt($dataAttempt)){
+        $client = Client::where('email', $request->email)->first();
+        if(Auth::guard('client')->attempt($dataAttempt) && $client->approved){
                 return redirect()->route('clients.index');
         }else{
             return redirect()->route('login');

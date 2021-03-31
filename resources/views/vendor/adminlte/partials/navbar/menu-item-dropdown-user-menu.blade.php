@@ -22,7 +22,12 @@
                                             alt="{{ Auth::user()->name }}">
                                     @endif
                                     <span @if (config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
-                                        {{ Auth::guard('user')->user()->name }}
+
+                                        @if (Auth::guard('user')->user())
+                                            {{ Auth::guard('user')->user()->name }}
+                                        @elseif (Auth::guard('client')->user())
+                                            {{ Auth::guard('client')->user()->name }}
+                                        @endif
                                     </span>
                                 </a>
 
@@ -32,7 +37,7 @@
                                     {{-- User menu header --}}
                                     @if (!View::hasSection('usermenu_header') && config('adminlte.usermenu_header'))
                                         <li class="user-header {{ config('adminlte.usermenu_header_class', 'bg-primary') }}
-                                            @if (!config('adminlte.usermenu_image')) h-auto @endif">
+                                                                                                    @if (!config('adminlte.usermenu_image')) h-auto @endif">
                                             @if (config('adminlte.usermenu_image'))
                                                 <img src="{{ Auth::user()->adminlte_image() }}" class="img-circle elevation-2"
                                                     alt="{{ Auth::user()->name }}">

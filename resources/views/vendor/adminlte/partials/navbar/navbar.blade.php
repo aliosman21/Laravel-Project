@@ -1,7 +1,7 @@
 @php($login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login'))
     <nav class="main-header navbar
-                    {{ config('adminlte.classes_topnav_nav', 'navbar-expand') }}
-                    {{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }}">
+                            {{ config('adminlte.classes_topnav_nav', 'navbar-expand') }}
+                            {{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }}">
 
         {{-- Navbar left links --}}
         <ul class="navbar-nav">
@@ -24,12 +24,13 @@
             @each('adminlte::partials.navbar.menu-item', $adminlte->menu('navbar-right'), 'item')
 
             {{-- User menu link --}}
-            @if (Auth::guard('user')->user())
-                @if (config('adminlte.usermenu_enabled'))
+            @if (Auth::guard('user')->user() || Auth::guard('client')->user())
+                {{-- @if (config('adminlte.usermenu_enabled'))
                     @include('adminlte::partials.navbar.menu-item-dropdown-user-menu')
                 @else
-                    @include('adminlte::partials.navbar.menu-item-logout-link')
-                @endif
+
+                @endif --}}
+                @include('adminlte::partials.navbar.menu-item-logout-link')
             @else
                 <a href={{ route('users.login') }} class="px-3">Staff Login</a>
                 <a href={{ $login_url }}>Client Login</a>
