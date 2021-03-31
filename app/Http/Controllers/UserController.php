@@ -185,7 +185,7 @@ class UserController extends Controller
             'avatar_img' =>   $fname,
             'role' => $requestData['role'],
             'created_by' => $requestData['user_id'][6] /// need to be checked with ali
-            
+
         ]);
         return redirect()->route('home');
     }
