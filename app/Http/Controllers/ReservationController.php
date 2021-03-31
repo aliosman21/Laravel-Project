@@ -34,8 +34,6 @@ class ReservationController extends Controller
                 whereIn('client_id',Client::where('user_id',auth()->guard('user')->user()->id)->get('id'))
                 ->where('status','paid')
                 ->get();
-
-
             return Datatables::of($getReservation)
                 ->editColumn('price',function($data){
                     $newPrice = $data->price / 100;

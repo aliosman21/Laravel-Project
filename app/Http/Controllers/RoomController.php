@@ -10,6 +10,7 @@ use App\Models\User;
 use DataTables;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Auth;
 
 class RoomController extends Controller {
 
@@ -25,9 +26,12 @@ class RoomController extends Controller {
 
     public function store(StoreRoomRequest $request){
         $requestData = $request->all();
-        $requestData['number'] = $requestData['number'] + $requestData['floor_number'];
+        $floor = Floor::where('id', $request->floor_id)->first();
+        $requestData['user_id']=Auth::guard('user')->user()->id;
+        $requestData['number'] = $requestData['number'] + $floor->number;
         $requestData['price'] = $requestData['price'] * 100;
-        Room::create($requestData);
+        $room = Room::create($requestData);
+      
         return redirect()->route('rooms.index');
     }
     public function getRoom(Request $request) {

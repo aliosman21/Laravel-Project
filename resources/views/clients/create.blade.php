@@ -48,13 +48,7 @@
                 </select>
             </div>
 
-            {{-- Client --}}
-            <div class="form-group">
-                <label  for="post_creator">Client name</label>
-                <select name="client_id" class="form-control" id="post_creator">
-                    <option value="{{$client->id}}">{{$client->name}}</option>
-                </select>
-            </div>
+        
 
 
             {{-- Create button --}}

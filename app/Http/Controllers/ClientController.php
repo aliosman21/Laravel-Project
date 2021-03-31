@@ -106,12 +106,12 @@ class ClientController extends Controller {
         $reservation = $request;
 
         $reservation = Reservation::create([
-            'accompany_number'=> $room->capacity,
+            'accompany_number'=> $request->accompany_number,
             'price' => $room->price * 100 * $days,
             'status' => 'pending',
             'start_date' => $start_date,
             'end_date' => $end_date,
-            'client_id' => $request->client_id,
+            'client_id' => Auth::guard('client')->user()->id,
             'room_id'=>$request->room_id
             ]);
             $room->reserved = 1;

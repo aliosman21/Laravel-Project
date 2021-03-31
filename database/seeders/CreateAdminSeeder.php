@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,6 +23,7 @@ class CreateAdminSeeder extends Seeder
         $user->role = 'admin';
         $user->national_id = '123456789';
         $user->save();
+        $user->assignRole(Role::findById(1));
 
 
         $user2 = new User();
@@ -31,6 +33,7 @@ class CreateAdminSeeder extends Seeder
         $user2->role = 'admin';
         $user2->national_id = '1234536789';
         $user2->save();
+        $user2->assignRole(Role::findById(1));
 
     }
 }

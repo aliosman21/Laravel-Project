@@ -55,9 +55,9 @@
             {{-- floor field --}}
             <div class="form-group">
                 <label  for="post_creator">Floor number</label>
-                <select name="floor_number" class="form-control" id="post_creator">
+                <select name="floor_id" class="form-control" id="post_creator">
                     @foreach ($floors as $floor)
-                        <option value="{{$floor->number}}">{{$floor->number}}</option>
+                        <option value="{{$floor->id}}">{{$floor->number}}</option>
                     @endforeach
                 </select>
             </div>
@@ -65,7 +65,7 @@
             {{-- user creator --}}
             <div class="form-group">
                 <label  for="post_creator">User Creator</label>
-                <select name="user_id" class="form-control" id="post_creator" disabled>
+                <select name="user_id" class="form-control" id="post_creator" >
                     <option value="{{Auth::guard('user')->user()->id}}">{{Auth::guard('user')->user()->name}} </option>
                 </select>
             </div>

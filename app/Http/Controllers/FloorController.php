@@ -21,6 +21,8 @@ class FloorController extends Controller
     }
 
     public function store(StoreFloorRequest $request){
+        $requestData = $request->all();
+        // $requestData['user_id']=Auth::guard('user')->user()->id;
         Floor::create($request->all());
         return redirect()->route('floors.index');
     }

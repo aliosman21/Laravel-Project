@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class CreateAdmin extends Command {
     /**
@@ -47,6 +48,7 @@ class CreateAdmin extends Command {
 
         ]);
         if($user){
+            $user->assignRole(Role::findById(1));
             $this->info('Admin user successfully created the name '.$this->argument('name').' and email is '.$this->argument('email'));
         }
     }
