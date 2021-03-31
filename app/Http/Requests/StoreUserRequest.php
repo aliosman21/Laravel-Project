@@ -27,8 +27,18 @@ class StoreUserRequest extends FormRequest
             'password' => 'required|min:6',
             'national_id' => 'required',
             'role' => 'required',
+            'avatar_img' =>'nullable|mimes:jpg,jpeg,png'
 
         ];
         return $rules;
+    }
+
+    public function messages(){
+
+
+        return [
+
+            'avatar_img.mimes'=> 'please upload avatar of type jpg jpeg or png'
+        ];
     }
 }

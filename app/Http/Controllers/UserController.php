@@ -159,8 +159,34 @@ class UserController extends Controller
     }
 
     public function store(StoreUserRequest $request) {
+        if($request->hasfile('avatar_img')){
+
+
+            $fname =  $request->file('avatar_img')->getClientOriginalName();
+            $request->file('avatar_img')->storeAS('',$fname,'public_uploads');
+             //Storage::disk('public_uploads')->put($path, $request->avatar_img);
+
+            //dd('yes file');
+
+        }
+
+        else{
+
+            dd('no file');
+        }
         $requestData = $request->all();
-        User::create($requestData);
+        //dd($request->user_id[6]);
+        User::create([
+
+            'name' => $requestData['name'],
+            'email' => $requestData['email'],
+            'password' => Hash::make($requestData['password']),
+            'national_id' => $requestData['national_id'],
+            'avatar_img' =>   $fname,
+            'role' => $requestData['role'],
+            'created_by' => $requestData['user_id'][6] /// need to be checked with ali
+            
+        ]);
         return redirect()->route('home');
     }
 

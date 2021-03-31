@@ -32,7 +32,7 @@ class StoreClientRequest extends FormRequest
             'mobile' =>['required','string', 'min:11'],
             'country' =>['required','string'],
             'gender' =>['required','string'],
-            'avatar' => 'required|ends_with:jpeg,jpg,png,JPEG,JPG,PNG'
+            'avatar_img' => 'required|mimes:jpeg,jpg,png'
             //mimes:jpeg,jpg,png,JPEG,JPG,PNG
         ];
     }
@@ -44,8 +44,8 @@ class StoreClientRequest extends FormRequest
     
         return [
                 
-            'avatar.ends_with' => 'you must upload an image of type jpg,jpeg,png',
-            'avatar.required' => 'you must upload an avatar'
+            'avatar_img.mimes' => 'you must upload an image of type jpg,jpeg,png',
+            'avatar_img.required' => 'you must upload an avatar'
 
         ];
     }

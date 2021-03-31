@@ -22,7 +22,9 @@ class Client extends Authenticatable
         'password',
         'mobile',
         'country',
-        'gender'
+        'gender',
+        'avatar_img',
+        'user_id'
     ];
 
     public function rooms()

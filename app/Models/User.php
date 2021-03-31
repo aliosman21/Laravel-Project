@@ -27,7 +27,9 @@ class User extends Authenticatable implements BannableContract
         'email',
         'password',
         'role',
-        'national_id'
+        'national_id',
+        'avatar_img',
+        'created_by'
     ];
 
     /**

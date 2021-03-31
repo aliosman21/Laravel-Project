@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container">
-<form action="{{route('users.store')}}" method="post">
+<form action="{{route('users.store')}}" method="post" enctype="multipart/form-data">
  @csrf
  @if ($errors->any())
         <div class="alert alert-danger">
@@ -89,16 +89,16 @@
 
     {{-- Avatar field --}}
     <div class="input-group mb-3">
-        <input type="file" id="avatar" name="avatar" accept="image/*"
-            class="form-control {{ $errors->has('avatar') ? 'is-invalid' : '' }}" value="{{ old('avatar') }}">
+        <input type="file" id="avatar_img" name="avatar_img" accept="image/*"
+            class="form-control {{ $errors->has('avatar_img') ? 'is-invalid' : '' }}" value="{{ old('avatar_img') }}">
         <div class="input-group-append">
             <div class="input-group-text">
                 <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
             </div>
         </div>
-        @if ($errors->has('avatar'))
+        @if ($errors->has('avatar_img'))
             <div class="invalid-feedback">
-                <strong>{{ $errors->first('avatar') }}</strong>
+                <strong>{{ $errors->first('avatar_img') }}</strong>
             </div>
         @endif
     </div>

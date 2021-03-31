@@ -22,18 +22,37 @@ class ClientController extends Controller {
         // dd($request);
 
 
-         Client::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'mobile'=>$request['mobile'],
-            'country'=>$request['country'],
-            'gender' => $request['gender'],
-            'avatar' => $request['avatar']
-        ]);
+        if($request->hasfile('avatar_img')){
 
-
-        return redirect()->route('clients.index');
+            // dd('yes file');
+ 
+             $fname =  $request->file('avatar_img')->getClientOriginalName();
+             $request->file('avatar_img')->storeAS('',$fname,'public_uploads');
+              //Storage::disk('public_uploads')->put($path, $request->avatar_img);
+ 
+             //dd('yes file');
+ 
+         }
+ 
+         else{
+ 
+             dd('no file');
+         }
+ 
+ 
+          Client::create([
+             'name' => $request['name'],
+             'email' => $request['email'],
+             'password' => Hash::make($request['password']),
+             'mobile'=>$request['mobile'],
+             'country'=>$request['country'],
+             'gender' => $request['gender'],
+             'avatar_img' => $fname,
+             'user_id'=>$request['user_id']//need to be checked with ali
+         ]);
+ 
+ 
+         return redirect()->route('clients.index');
     }
 
     public function index(){
