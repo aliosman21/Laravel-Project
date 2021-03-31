@@ -189,7 +189,7 @@ class UserController extends Controller
             'avatar_img' =>   $fname,
             'role' => $requestData['role'],
             'created_by' => $requestData['user_id'][6] /// need to be checked with ali
-            
+
         ]);
         Auth::guard('user')->user()->assignRole($requestData['role']);
         return redirect()->route('home');
