@@ -191,7 +191,13 @@ class UserController extends Controller
             'created_by' => $requestData['user_id'][6] /// need to be checked with ali
 
         ]);
-        Auth::guard('user')->user()->assignRole($requestData['role']);
+        if($requestData['role']=='manager'){
+            Auth::guard('user')->user()->assignRole(Role::findById(2));
+        }
+       
+        else{
+            Auth::guard('user')->user()->assignRole(Role::findById(3));
+        }
         return redirect()->route('home');
     }
     
