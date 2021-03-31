@@ -19,12 +19,12 @@
         </p>
 
     </a>
-
     {{-- Menu items --}}
+
     <ul class="nav nav-treeview">
-        @if ($item['text'] == 'admin')
-            @each('adminlte::partials.sidebar.menu-item', $item['submenu'], 'item')
-        @endif
+        {{-- @if ($item['text'] == 'manager') --}}
+        @each('adminlte::partials.sidebar.menu-item', $item['submenu'], 'item')
+        {{-- @endif --}}
     </ul>
 
 </li>

@@ -259,19 +259,27 @@ return [
             'submenu' => [
                 [
                     'text' => 'Manage Users',
-                    'url'  => '#',
+                    'url'  => '/users',
                 ],
                 [
                     'text' => 'Manage Floors',
-                    'url'  => '#',
+                    'url'  => '/floors',
                 ],
                 [
                     'text' => 'Manage Clients',
-                    'url'  => '#',
+                    'url'  => '/users/listUnApprovedClients',
                 ],
                 [
                     'text' => 'Manage Rooms',
-                    'url'  => '#',
+                    'url'  => '/rooms',
+                ],
+                [
+                    'text' => 'Approved Clients',
+                    'url'  => '/users/listApprovedClients',
+                ],
+                [
+                    'text' => 'Clients Reservations',
+                    'url'  => '/reservations',
                 ],
             ],
         ],
