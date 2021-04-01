@@ -26,10 +26,16 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('ban:delete-expired')->everyMinute();
+
         $schedule->call(function (){
             $pendingReservation = Reservation::where('status','pending')->get();
             $pendingReservation->delete();
         })->daily();
+
+        $schedule->call(function (){
+            //some logic about sending emails
+        })->monthly();
+
     }
 
     /**

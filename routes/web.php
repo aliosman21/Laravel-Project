@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth',"forbid-banned-user",'role']], function ()
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::post('/users/ban',[UserController::class, 'ban'])->name('users.ban');
     Route::post('/users/unban',[UserController::class, 'unban'])->name('users.unban');
+    Route::delete('/users/unApproveClient/{client}',[UserController::class, 'unapproveClient'])->name('users.unapproveClient');
+
 });
 
 

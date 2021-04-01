@@ -195,14 +195,14 @@ class UserController extends Controller
            $user= User::where('email',$requestData['email'])->first();
            $user->assignRole(Role::findById(2));
         }
-       
+
         else{
             $user= User::where('email',$requestData['email'])->first();
            $user->assignRole(Role::findById(3));
         }
         return redirect()->route('home');
     }
-    
+
     public function getUsers(Request $request) {
         //3awzien el zaraer gwa blade.php ya nakash
         if ($request->ajax()) {
@@ -218,7 +218,7 @@ class UserController extends Controller
                     }else {
                         return $data->name;
                     }
-                    
+
                 })
                 ->rawColumns(['action','avatar_img','created_by'])
                 ->make(true);
@@ -236,5 +236,10 @@ class UserController extends Controller
     public function destroy(User $user) {
         $user->delete();
         return redirect()->route('users.index');
+    }
+
+    public function unapproveClient(Client $client){
+        $client->delete();
+        return redirect()->route('users.nonApprovedClients');
     }
 }
