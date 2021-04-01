@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FloorController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Models\Client;
@@ -30,7 +31,7 @@ Auth::routes();
 //----------------------------USERS-------------------------------------------------------------------------------//
 Route::group(['middleware' => ['auth',"forbid-banned-user",'role']], function () {
     Route::get('/users',[UserController::class, 'index'])->name('users.index');//Middleware set as example to restrict access for banned accounts
-    Route::get('/users/list', [UserController::class, 'getUsers'])->name('users.list'); 
+    Route::get('/users/list', [UserController::class, 'getUsers'])->name('users.list');
     Route::get('/users/create',[UserController::class, 'create'])->name('users.create');
     Route::post('/users/store',[UserController::class, 'store'])->name('users.store');
     Route::get('/users/{user}/edit',[UserController::class , 'edit'])->name('users.edit');
@@ -38,15 +39,17 @@ Route::group(['middleware' => ['auth',"forbid-banned-user",'role']], function ()
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::post('/users/ban',[UserController::class, 'ban'])->name('users.ban');
     Route::post('/users/unban',[UserController::class, 'unban'])->name('users.unban');
+    Route::delete('/users/unApproveClient/{client}',[UserController::class, 'unapproveClient'])->name('users.unapproveClient');
+
 });
 
-    
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/users/login',[UserController::class, 'login'])->name('users.login');
 Route::post('/users/authenticate',[UserController::class,'authenticate'])->name('users.authenticate');
-Route::get('/nonapproved/list', [UserController::class, 'getNonApprovedClients'])->name('nonapproved.list'); 
+Route::get('/nonapproved/list', [UserController::class, 'getNonApprovedClients'])->name('nonapproved.list');
 Route::get('/approved/list', [UserController::class, 'getApprovedClients'])->name('approved.list');// response to ajax requests
 Route::get('/users/listUnApprovedClients',[UserController::class, 'getNonApprovedClientsView'])->name('users.nonApprovedClients'); //list Non approved clients
 Route::get('/users/listApprovedClients',[UserController::class, 'getGetApprovedClientsView'])->name('users.ApprovedClients'); //list approved clients
@@ -68,7 +71,7 @@ Route::group(['middleware' => ['auth','role']], function () {
     Route::get('/floors/{floor}/edit',[FloorController::class , 'edit'])->name('floors.edit');
     Route::put('/floors/{floor}', [FloorController::class, 'update'])->name('floors.update');
     Route::delete('/floors/{floor}', [FloorController::class, 'destroy'])->name('floors.destroy');
-    Route::get('/floors/list', [FloorController::class, 'getfloor'])->name('floors.list'); 
+    Route::get('/floors/list', [FloorController::class, 'getfloor'])->name('floors.list');
 });
 
 
@@ -78,13 +81,13 @@ Route::group(['middleware' => ['auth','role']], function () {
 
 //----------------------------ROOMS-------------------------------------------------------------------------------//
 Route::group(['middleware' => ['auth','role']], function () {
-Route::get('/rooms',[RoomController::class,'index'])->name('rooms.index');
-Route::get('/rooms/create',[RoomController::class,'create'])->name('rooms.create');
-Route::post('/rooms/store',[RoomController::class,'store'])->name('rooms.store');
-Route::get('/rooms/{room}/edit',[RoomController::class , 'edit'])->name('rooms.edit');
-Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update');
-Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
-Route::get('/rooms/list', [RoomController::class, 'getRoom'])->name('rooms.list'); 
+    Route::get('/rooms',[RoomController::class,'index'])->name('rooms.index');
+    Route::get('/rooms/create',[RoomController::class,'create'])->name('rooms.create');
+    Route::post('/rooms/store',[RoomController::class,'store'])->name('rooms.store');
+    Route::get('/rooms/{room}/edit',[RoomController::class , 'edit'])->name('rooms.edit');
+    Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update');
+    Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
+    Route::get('/rooms/list', [RoomController::class, 'getRoom'])->name('rooms.list');
 });
 //----------------------------ROOMS-------------------------------------------------------------------------------//
 
@@ -103,6 +106,11 @@ Route::get('/clients/reservations/getRooms', [ClientController::class, 'getRooms
 Auth::routes();
 
 //----------------------------CLIENTS-------------------------------------------------------------------------------//
+
+//---------------------- edit profile -----------------------------------------//
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profiles/{profile}', [ProfileController::class, 'update'])->name('profile.update');
 
 //------------------------checkout---------------------------------------------//
 
