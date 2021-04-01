@@ -245,7 +245,7 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => '#',
+            'url'  => '/profile/edit',
             'icon' => 'fas fa-fw fa-user',
         ],
         // [
