@@ -41,9 +41,9 @@ class NotifyNoLoginFor30Days extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('We miss you, Come back we have great offers waiting for you')
+                    ->action('Login from here', url('/login'))
+                    ->line('Hope to see you soon');
     }
 
     /**
