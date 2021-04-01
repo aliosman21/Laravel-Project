@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Room;
 use DateTime;
 use DataTables;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 
 class ClientController extends Controller {
@@ -130,7 +131,10 @@ class ClientController extends Controller {
         //dd(Auth::guard('client')->attempt($dataAttempt));
         $client = Client::where('email', $request->email)->first();
         if(Auth::guard('client')->attempt($dataAttempt) && $client->approved){
-                return redirect()->route('clients.index');
+
+            $client->last_login = Carbon::now();
+            $client->save();
+            return redirect()->route('clients.index');
         }else{
             return redirect()->route('login');
         }
