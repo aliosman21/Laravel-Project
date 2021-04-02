@@ -172,6 +172,7 @@ trait ResetsPasswords
      */
     public function broker()
     {
+        Auth::guard('client')->logout();
         return Password::broker('clients');
     }
 

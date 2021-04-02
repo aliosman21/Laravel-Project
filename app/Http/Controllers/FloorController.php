@@ -28,6 +28,7 @@ class FloorController extends Controller
     }
 
     public function edit(Floor $floor){
+       
         $floors = Floor::all();
         return view('floors.edit', compact('floor', 'floors'));
     }
@@ -38,11 +39,14 @@ class FloorController extends Controller
     }
 
     public function destroy(Floor $floor) {
-        $rooms = Room::where('floor_id',$floor->id)->firstOrFail();
+        
+        $rooms = Room::where('floor_id',$floor->id)->first();
+        //dd($rooms);
         if($rooms){
             $msg = "this floor cant be deleted";
             return view('floors.manage',compact('msg'));
         }
+        
         $floor->delete();
         return redirect()->route('floors.index');
     }

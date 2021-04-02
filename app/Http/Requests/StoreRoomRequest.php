@@ -23,6 +23,7 @@ class StoreRoomRequest extends FormRequest
      */
     public function rules()
     {
+        
         $rules =[
             'number' => 'unique:rooms|max:3|required',
             'price' => 'required',

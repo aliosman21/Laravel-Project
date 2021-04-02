@@ -67,7 +67,9 @@ class RoomController extends Controller {
     }
 
     public function edit(Room $room){
+      
         $rooms = Floor::all();
+        
         return view('rooms.edit', compact('room', 'rooms'));
     }
 
