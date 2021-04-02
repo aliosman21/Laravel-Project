@@ -74,24 +74,16 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password
         );
-
+        $user = User::where('email', $request->email)->first();
+        if($user == null)  return redirect()->route('users.login')->withErrors(['Email Doesn\'t exist']);
+        if(!$user->banned_at == null) return redirect()->route('users.login')->withErrors(['Email Is banned']);
 
         if(Auth::guard('user')->attempt($dataAttempt)){
-            //dd(Auth::guard('user')->user()->role);
-            if(Auth::guard('user')->user()->role == "admin")
-                return redirect()->route('users.index');
-            else
-                return redirect()->route('home');
-/*             $user = User::where('email', $request->email)->get();
-            dd(Auth::user());
-            dd(Auth::login($user[0])); */
-
+            return redirect()->route('users.index');
+        }else{
+            Auth::guard('user')->logout();
+            return redirect()->route('users.login')->withErrors(['Email or password incorrect']);
         }
-        else{
-
-             return redirect()->route('users.login')->withErrors(['Email or password incorrect']);
-        }
-        //dd($user[0]);
 
     }
 
@@ -232,7 +224,11 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(User $user, StoreUserRequest $request){
+    public function update(User $user, Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required | unique:users,email,'.$user->id,
+        ]);
         $user->update($request->all());
         return redirect()->route('users.index');
     }

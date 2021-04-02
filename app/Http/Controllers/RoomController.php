@@ -31,7 +31,7 @@ class RoomController extends Controller {
         $requestData['number'] = $requestData['number'] + $floor->number;
         $requestData['price'] = $requestData['price'] * 100;
         $room = Room::create($requestData);
-      
+
         return redirect()->route('rooms.index');
     }
     public function getRoom(Request $request) {
@@ -59,7 +59,7 @@ class RoomController extends Controller {
                     }else {
                         return $data->name;
                     }
-                    
+
                 })
                 ->rawColumns(['action','RealPrice','floorNumber','user_id'])
                 ->make(true);
@@ -67,13 +67,18 @@ class RoomController extends Controller {
     }
 
     public function edit(Room $room){
-      
+
         $rooms = Floor::all();
-        
+
         return view('rooms.edit', compact('room', 'rooms'));
     }
 
-    public function update(Room $room, StoreRoomRequest $request){
+    public function update(Room $room, Request $request){
+        $request->validate([
+            'capacity' => 'required',
+            'price' => 'required'
+        ]);
+        $request['price'] = $request['price'] * 100;
         $room->update($request->all());
         return redirect()->route('rooms.index');
     }
