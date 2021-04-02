@@ -191,20 +191,19 @@ By default this database configuration is supplied you can override it if the da
 
 We implemented the Repository design pattern in our project where we separated the ORM logic from the controller so the database communication is done through methods in app/classes
 
-<img align="center" src="./assets/classes.png"  />
+<img align="center" src="./assets/classes.PNG"  />
 
 We didn't fully isolate it yet but we are working on it 
 
 # Authors
 
 
-<a href="https://github.com/aliosman21"><img src="https://github.com/aliosman21.png" width="7%" style="border-radius:50%; margin-right:10px" /></a>
-<a href="https://github.com/mmAbdelhay"> <kbd><img src="https://github.com/mmAbdelhay.png" width="7%" style="border-radius:50%;  margin-right:10px" /></kbd></a>
-
-<a href="https://github.com/karim-arafa"><img src="https://github.com/karim-arafa.png" width="7%" style="border-radius:50% ; margin-right:10px" /></a>
-<a href="https://github.com/youssefshaban"><img src="https://github.com/youssefshaban.png" width="7%" style="border-radius:50% ; margin-right:10px" /></a>
-<a href="https://github.com/ibrahimHesham"><img src="https://github.com/ibrahimHesham.png" width="7%" style="border-radius:50% ; margin-right:10px" /></a>
-<a href="https://github.com/ali-khaled-ali"><img src="https://github.com/ali-khaled-ali.png" width="7%" style="border-radius:50% ; margin-right:10px" /></a>
+<a href="https://github.com/aliosman21"><img src="https://github.com/aliosman21.png" width="7%" style="border-radius:50%;margin-right:10px;" /></a>
+<a href="https://github.com/mmAbdelhay"><img src="https://github.com/mmAbdelhay.png" width="7%" style="border-radius:50%;margin-right:10px;" /></a>
+<a href="https://github.com/karim-arafa"><img src="https://github.com/karim-arafa.png" width="7%" style="border-radius:50%;margin-right:10px;" /></a>
+<a href="https://github.com/youssefshaban"><img src="https://github.com/youssefshaban.png" width="7%" style="border-radius:50%;margin-right:10px;" /></a>
+<a href="https://github.com/ibrahimHesham"><img src="https://github.com/ibrahimHesham.png" width="7%" style="border-radius:50%;margin-right:10px;" /></a>
+<a href="https://github.com/ali-khaled-ali"><img src="https://github.com/ali-khaled-ali.png" width="7%" style="border-radius:50%;margin-right:10px;" /></a>
 
 
 # License 
