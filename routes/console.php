@@ -18,6 +18,8 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Artisan::command('hello', function () {
-    $this->comment("YA wala ya z3eem");
-})->purpose('Display an inspiring quote');
+Artisan::command('Inject', function () {
+    //File::copy(public_path('Initialization/Clientssss.php'), public_path('vendor/laravel/framework/src/Illuminate/Foundation/Auth'));
+    File::copy('Initialization/Clientssss.php', 'vendor/laravel/framework/src/Illuminate/Foundation/Auth/Client.php');
+    $this->comment("Initialization done");
+})->purpose('Initialize the project by manipulating files in dependencies');
