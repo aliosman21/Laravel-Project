@@ -199,9 +199,9 @@ We didn't fully isolate it yet but we are working on it
 
 
 <a href="https://github.com/aliosman21"><img src="https://github.com/aliosman21.png" width="7%" style="border-radius:50%; margin-right:10px" /></a>
-<a href="https://github.com/mmAbdelhay"><img src="https://github.com/mmAbdelhay.png" width="7%" style="border-radius:50%;  margin-right:10px" /></a>
-<a href="https://github.com/karim-arafa"><img src="
-https://github.com/karim-arafa.png" width="7%" style="border-radius:50% ; margin-right:10px" /></a>
+<a href="https://github.com/mmAbdelhay"> <kbd><img src="https://github.com/mmAbdelhay.png" width="7%" style="border-radius:50%;  margin-right:10px" /></kbd></a>
+
+<a href="https://github.com/karim-arafa"><img src="https://github.com/karim-arafa.png" width="7%" style="border-radius:50% ; margin-right:10px" /></a>
 <a href="https://github.com/youssefshaban"><img src="https://github.com/youssefshaban.png" width="7%" style="border-radius:50% ; margin-right:10px" /></a>
 <a href="https://github.com/ibrahimHesham"><img src="https://github.com/ibrahimHesham.png" width="7%" style="border-radius:50% ; margin-right:10px" /></a>
 <a href="https://github.com/ali-khaled-ali"><img src="https://github.com/ali-khaled-ali.png" width="7%" style="border-radius:50% ; margin-right:10px" /></a>
