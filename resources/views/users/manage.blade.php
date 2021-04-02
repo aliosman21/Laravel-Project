@@ -62,10 +62,7 @@
     <script type="text/javascript">
         $(function() {
             var php_var = "{{ auth()->guard('user')->user()->hasRole('manager') ||  auth()->guard('user')->user()->hasRole('receptionist')}}";
-            // console.log({{ auth()->guard('user')->user()->hasRole('manager') }});
-            // $("table").addClass("mdl-data-table")
-            // $(".mdl-data-table").css("padding","10px")
-            // $(".container").css("margin-top","30px")
+       
             var table = $('.yajra-datatable').DataTable({
                 autoWidth: false,
                 columnDefs: [{
@@ -76,7 +73,7 @@
                 serverSide: true,
                 ajax: "{{ route('users.list') }}",
                 columns: [
-                    // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                  
                     {
                         data: 'avatar_img',
                         name: 'avatar_img'

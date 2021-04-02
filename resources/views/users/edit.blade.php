@@ -21,9 +21,9 @@
             @endif
 
             {{-- Name field --}}
-
+            <label  >Name</label>
             <div class="input-group mb-3">
-
+               
                 <input type="text" name="name" class="form-control " value="{{ $user->name }}" autofocus>
                 <div class="input-group-append">
                     <div class="input-group-text">
@@ -34,7 +34,9 @@
             </div>
 
             {{-- Email field --}}
+            <label  >Email</label>
             <div class="input-group mb-3">
+               
                 <input type="email" name="email" class="form-control " value="{{ $user->email }}">
                 <div class="input-group-append">
                     <div class="input-group-text">

@@ -15,17 +15,7 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
-/*         $client = new Client();
-        $client->user_id = 1;
-        $client->name = 'dafault';
-        $client->email = 'default@default.com';
-        $client->mobile = '123456789';
-        $client->country = 'null';
-        $client->avatar_img = '123456789';
-        $client->gender = 'male';
-        $client->last_login = now();
-        $client->password = Hash::make('123456');
-        $client->save(); */
+
 
     }
 }

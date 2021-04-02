@@ -54,7 +54,7 @@
     <script type="text/javascript">
         $(function() {
             var php_var = "{{ auth()->guard('user')->user()->hasRole('manager') ||  auth()->guard('user')->user()->hasRole('receptionist')}}";
-            // var price
+            
             var table = $('.yajra-datatable').DataTable({
                 autoWidth: false,
                 columnDefs: [{

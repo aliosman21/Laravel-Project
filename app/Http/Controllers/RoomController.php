@@ -20,7 +20,7 @@ class RoomController extends Controller {
 
     public function create(){
         $floors = Floor::all();
-        // $client = Client::where('email', 'default@default.com')->first();
+        
         return view('rooms.create',compact('floors'));
     }
 

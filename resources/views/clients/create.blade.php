@@ -22,7 +22,9 @@
             @endif
 
             {{-- Accompany number --}}
+            <label  >Accompany number</label>
             <div class="input-group mb-3">
+                
                 <input type="number" name="accompany_number" class="form-control "
                        placeholder="Accompany number" autofocus>
                 <div class="input-group-append">

@@ -14,8 +14,7 @@ class AddClientsIdToRoomsTable extends Migration
     public function up()
     {
         Schema::table('rooms', function (Blueprint $table) {
-            /* $table->foreignId('client_id')->nullable();
-            $table->foreign('client_id')->references('id')->on('clients'); */
+   
         });
     }
 

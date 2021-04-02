@@ -22,7 +22,7 @@ class FloorController extends Controller
 
     public function store(StoreFloorRequest $request){
         $requestData = $request->all();
-        // $requestData['user_id']=Auth::guard('user')->user()->id;
+        
         Floor::create($request->all());
         return redirect()->route('floors.index');
     }
@@ -41,7 +41,7 @@ class FloorController extends Controller
     public function destroy(Floor $floor) {
         
         $rooms = Room::where('floor_id',$floor->id)->first();
-        //dd($rooms);
+        
         if($rooms){
             $msg = "this floor cant be deleted";
             return view('floors.manage',compact('msg'));

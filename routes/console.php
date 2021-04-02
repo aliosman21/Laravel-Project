@@ -19,7 +19,7 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Artisan::command('Inject', function () {
-    //File::copy(public_path('Initialization/Clientssss.php'), public_path('vendor/laravel/framework/src/Illuminate/Foundation/Auth'));
+   
     File::copy('Initialization/Client.php', 'vendor/laravel/framework/src/Illuminate/Foundation/Auth/Client.php');
     File::copy('Initialization/ResetsPasswords.php', 'vendor/laravel/ui/auth-backend/ResetsPasswords.php');
     File::copy('Initialization/SendsPasswordResetEmails.php', 'vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php');

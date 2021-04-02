@@ -14,12 +14,6 @@ class FloorSeeder extends Seeder
      */
     public function run()
     {
-/*         $floor = new Floor();
-        $floor->name = 'dafault';
-        $floor->number = 0000;
-        $floor->reserved = 0;
-        $floor->user_id = 1;
-        $floor->save();
- */
+
     }
 }

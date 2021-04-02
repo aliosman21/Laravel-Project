@@ -11,16 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class ReservationController extends Controller
 {
     public function index() {
-        // $users = User::all();
-        // return view('users.manage',compact('users'));
-        // Auth::guard('user')->user()->assignRole(Role::findById(1));
-        // $users = User::all()
-        // dd(Auth::guard('user')->user()->getAllPermissions());
-        // dd(Auth::guard('user')->user()->hasRole('admin'));
-        // dd(auth()->guard('user')->user()->hasRole('admin'));
-        // Auth::guard('user')->user()->removeRole(Role::findById(2));
-        // Auth::guard('user')->user()->assignRole(Role::findById(2));
-        // dd(Auth::guard('user')->user()->hasRole('manager'));
+        
 
         return view('Reservations.manage');
     }

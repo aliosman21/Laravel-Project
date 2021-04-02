@@ -26,14 +26,7 @@ class CreateAdminSeeder extends Seeder
         $user->assignRole(Role::findById(1));
 
 
-        $user2 = new User();
-        $user2->name = 'admin2';
-        $user2->email = 'admin2@admin.com';
-        $user2->password = Hash::make('123456');
-        $user2->role = 'admin';
-        $user2->national_id = '1234536789';
-        $user2->save();
-        $user2->assignRole(Role::findById(1));
+      
 
     }
 }

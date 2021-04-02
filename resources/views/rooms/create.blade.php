@@ -20,7 +20,9 @@
             @endif
 
             {{-- number field --}}
+            <label  >Number</label>
             <div class="input-group mb-3">
+                
                 <input type="number" name="number" class="form-control "
                        placeholder="Room number" autofocus>
                 <div class="input-group-append">
@@ -31,7 +33,9 @@
             </div>
 
             {{-- capacity field --}}
+            <label  >Capacity</label>
             <div class="input-group mb-3">
+               
                 <input type="number" name="capacity" class="form-control "
                        placeholder="capacity" autofocus>
                 <div class="input-group-append">
@@ -42,7 +46,9 @@
             </div>
 
             {{-- price field --}}
+            <label  >Price</label>
             <div class="input-group mb-3">
+                
                 <input type="number" name="price" class="form-control "
                        placeholder="price" autofocus>
                 <div class="input-group-append">
