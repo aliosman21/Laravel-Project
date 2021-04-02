@@ -176,7 +176,7 @@ class UserController extends Controller
 
         else{
 
-            dd('no file');
+            
         }
         $requestData = $request->all();
         //dd($request->user_id[6]);
@@ -200,7 +200,7 @@ class UserController extends Controller
             $user= User::where('email',$requestData['email'])->first();
            $user->assignRole(Role::findById(3));
         }
-        return redirect()->route('home');
+        return redirect()->route('users.index');
     }
 
     public function getUsers(Request $request) {
