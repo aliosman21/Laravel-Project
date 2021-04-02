@@ -20,8 +20,9 @@
             @endif
 
             {{-- Name field --}}
+            <label  >Name</label>
             <div class="input-group mb-3">
-                <label  >Name</label>
+               
                 <input type="text" name="name" class="form-control "
                        placeholder="Floor name" autofocus>
                 <div class="input-group-append">

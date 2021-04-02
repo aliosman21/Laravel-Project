@@ -20,8 +20,9 @@
     @endif
 
 {{-- Name field --}}
+<label  >Name</label>
 <div class="input-group mb-3">
-    <label  >Name</label>
+    
  <input type="text" name="name" class="form-control "
  placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
 <div class="input-group-append">
@@ -33,8 +34,9 @@
     </div>
 
     {{-- Email field --}}
+    <label  >Email</label>
     <div class="input-group mb-3">
-        <label  >Email</label>
+       
         <input type="email" name="email" class="form-control "
             placeholder="{{ __('adminlte::adminlte.email') }}">
         <div class="input-group-append">
@@ -46,8 +48,9 @@
     </div>
 
     {{-- Password field --}}
+    <label  >Password</label>
     <div class="input-group mb-3">
-        <label  >Password</label>
+      
         <input type="password" name="password"
             class="form-control "
             placeholder="{{ __('adminlte::adminlte.password') }}">
@@ -61,8 +64,9 @@
 
 
     {{-- National-id field --}}
+    <label  >National ID</label>
     <div class="input-group mb-3">
-        <label  >National ID</label>
+       
         <input type="text" name="national_id" class="form-control "
              placeholder="NationalID" >
         <div class="input-group-append">
@@ -74,8 +78,9 @@
     </div>
 
 {{-- role field --}}
+<label  >Role</label>
 <div class="input-group mb-3">
-    <label  >Role</label>
+   
     <select id="role" name="role" class="form-control "
        placeholder="role" autofocus>
        @if(auth()->guard('user')->user()->hasRole('admin'))
