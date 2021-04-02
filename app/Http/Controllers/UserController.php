@@ -163,8 +163,11 @@ class UserController extends Controller
     }
 
     public function store(StoreUserRequest $request) {
+        
+        $requestData = $request->all();
+        //dd($requestData);
+       
         if($request->hasfile('avatar_img')){
-
 
             $fname =  $request->file('avatar_img')->getClientOriginalName();
             $request->file('avatar_img')->storeAS('',$fname,'public_uploads');
@@ -172,25 +175,24 @@ class UserController extends Controller
 
             //dd('yes file');
 
+           
+
         }
 
-        else{
-
-            
-        }
-        $requestData = $request->all();
-        //dd($request->user_id[6]);
         User::create([
 
             'name' => $requestData['name'],
             'email' => $requestData['email'],
             'password' => Hash::make($requestData['password']),
             'national_id' => $requestData['national_id'],
-            'avatar_img' =>   $fname,
+            'avatar_img' =>   $request->hasfile('avatar_img') ? $fname : null,
             'role' => $requestData['role'],
             'created_by' => $requestData['user_id'][6] /// need to be checked with ali
 
         ]);
+        
+        //dd($request->user_id[6]);
+        
         if($requestData['role']=='manager'){
            $user= User::where('email',$requestData['email'])->first();
            $user->assignRole(Role::findById(2));
