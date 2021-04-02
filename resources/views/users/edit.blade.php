@@ -23,7 +23,7 @@
             {{-- Name field --}}
 
             <div class="input-group mb-3">
-
+                <label  >Name</label>
                 <input type="text" name="name" class="form-control " value="{{ $user->name }}" autofocus>
                 <div class="input-group-append">
                     <div class="input-group-text">
@@ -35,6 +35,7 @@
 
             {{-- Email field --}}
             <div class="input-group mb-3">
+                <label  >Email</label>
                 <input type="email" name="email" class="form-control " value="{{ $user->email }}">
                 <div class="input-group-append">
                     <div class="input-group-text">

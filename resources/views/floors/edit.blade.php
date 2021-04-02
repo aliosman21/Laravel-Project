@@ -23,7 +23,7 @@
             {{-- Name field --}}
 
             <div class="input-group mb-3">
-
+                <label  >Name</label>
                 <input type="text" name="name" class="form-control " value="{{ $floor->name }}" autofocus>
                 <div class="input-group-append">
                     <div class="input-group-text">

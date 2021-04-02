@@ -21,6 +21,7 @@
 
             {{-- number field --}}
             <div class="input-group mb-3">
+                <label  >Number</label>
                 <input type="number" name="number" class="form-control "
                        placeholder="Room number" autofocus>
                 <div class="input-group-append">
@@ -32,6 +33,7 @@
 
             {{-- capacity field --}}
             <div class="input-group mb-3">
+                <label  >Capacity</label>
                 <input type="number" name="capacity" class="form-control "
                        placeholder="capacity" autofocus>
                 <div class="input-group-append">
@@ -43,6 +45,7 @@
 
             {{-- price field --}}
             <div class="input-group mb-3">
+                <label  >Price</label>
                 <input type="number" name="price" class="form-control "
                        placeholder="price" autofocus>
                 <div class="input-group-append">
