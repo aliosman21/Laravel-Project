@@ -8,6 +8,8 @@ use App\Models\Client;
 use App\Notifications\NotifyApproval;
 use Illuminate\Http\Request;
 use DataTables;
+use App\Classes\ClientRepository;
+use Illuminate\Cache\Repository;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -97,8 +99,7 @@ class UserController extends Controller
     }
 
     public function getNonApprovedClients(){
-        $clients = Client::where('approved', 0)->get();
-
+         $clients = Client::where('approved', 0)->get();
          return Datatables::of($clients)
                 ->addColumn('action', 'helpers.approveClient')
                 ->rawColumns(['action'])
