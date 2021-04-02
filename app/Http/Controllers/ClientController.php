@@ -26,7 +26,7 @@ class ClientController extends Controller {
             $request->file('avatar_img')->storeAS('', $fname, 'public_uploads');
         }
          else{
-             dd('no file');
+             
          }
         $clientExists = ClientRepository::getClientUsingEmail($request['email']);
         if(!$clientExists == null){
@@ -42,7 +42,7 @@ class ClientController extends Controller {
     }
 
     public function getRooms(){
-        // $room = Room::where('reserved', 0)->get();
+        
         $room = RoomRepository::getAllNonReservedRooms();
          return Datatables::of($room)
                  ->editColumn('price',function($room){
@@ -66,7 +66,7 @@ class ClientController extends Controller {
     }
 
     public function getReservation(){
-        // $reservation = Reservation::where('client_id', Auth::guard('client')->user()->id)->where('status','paid')->get();
+        
         $reservation = ReservationRepository::getPaidReservationsOfLoggedInClient();
         return Datatables::of($reservation)
                 ->editColumn('price',function ($data){
@@ -74,7 +74,7 @@ class ClientController extends Controller {
                 })
                 ->editColumn('room_id',function ($data){
                    $roomNumber = RoomRepository::getRoomById($data->room_id);
-                    // $roomNumber = Room::where('id',$data->room_id)->first();
+                    
                     return $roomNumber->number;
                 })
                 ->rawColumns(['price','room_id'])

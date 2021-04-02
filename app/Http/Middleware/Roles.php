@@ -18,7 +18,7 @@ class Roles
      */
     public function handle(Request $request, Closure $next)
     {
-        // dd(Auth::guard('user')->user());
+        
          if(Auth::guard('user')->user()->hasRole('receptionist')){
 
              return redirect()->route('users.nonApprovedClients');

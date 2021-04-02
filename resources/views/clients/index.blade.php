@@ -53,7 +53,7 @@
                 serverSide: true,
                 ajax: "{{ route('Rooms.list') }}",
                 columns: [
-                    // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    
                     {
                         data: 'number',
                         name: 'number'

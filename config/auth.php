@@ -84,10 +84,7 @@ return [
             'model' => App\Models\Client::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+    
     ],
 
     /*

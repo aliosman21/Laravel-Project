@@ -18,16 +18,8 @@ class UserController extends Controller
 {
 
     public function index() {
-        // $users = User::all();
-        // return view('users.manage',compact('users'));
-        // Auth::guard('user')->user()->assignRole(Role::findById(1));
-        // $users = User::all()
-        // dd(Auth::guard('user')->user()->getAllPermissions());
-        // dd(Auth::guard('user')->user()->hasRole('admin'));
-        // dd(auth()->guard('user')->user()->hasRole('admin'));
-        //Auth::guard('user')->user()->removeRole(Role::findById(3));
-        // Auth::guard('user')->user()->assignRole(Role::findById(3));
-        // dd(Auth::guard('user')->user()->hasRole('manager'));
+        
+    
 
         return view('users.manage');
     }
@@ -35,24 +27,22 @@ class UserController extends Controller
 
         $users = User::withoutBanned()->get();
         return Datatables::of($users)
-             /*    ->addColumn('action', 'helpers.approveClient')
-                ->rawColumns(['action']) */
+        
                 ->make(true);
     }
 
     public function banned(){
         $users = User::onlyBanned()->get();
         return Datatables::of($users)
-             /*    ->addColumn('action', 'helpers.approveClient')
-                ->rawColumns(['action']) */
+           
                 ->make(true);
 
     }
 
     public function ban(Request $request){
-        //dd($request->email);
+        
         $user = User::where('email' , $request->email)->first();
-        //dd($user->role);
+        
         $err = "User cannot be banned";
         $success = "User banned successfully";
         if($user->role != "receptionist")
@@ -118,7 +108,7 @@ class UserController extends Controller
     }
 
     public function approveClient(Client $client){
-        // dd($user);
+        
         $client = Client::where('email' , $client->email)->first();
         $client->user_id=Auth::guard('user')->user()->id;
         if (!$client == null) {
@@ -137,21 +127,12 @@ class UserController extends Controller
         //Notification way of laravel
         $client->notify(new NotifyApproval());
 
-        //Normal way to use laravel Mail
-        /*  $details = [
-                'title' => 'Mail From HotelManagement System',
-                'body' =>  'Hello, '.$client->name.' Hope you are having a wonderful day, If you are reading
-                this you have been accepted to our system and we are all waiting for you to login',
-                'rand'=>'random text'
-            ];
-                \Mail::to($client->email)->send(new \App\Mail\ApprovedMail($details));
-                dd("Email is Sent."); */
 
     }
 
 
     public function create(){
-        //dd(Auth::user());
+        
         $users = User::all();
         return view('users.create',compact('users'));
     }
@@ -159,18 +140,13 @@ class UserController extends Controller
     public function store(StoreUserRequest $request) {
 
         $requestData = $request->all();
-        //dd($requestData);
+        
 
         if($request->hasfile('avatar_img')){
 
             $fname =  $request->file('avatar_img')->getClientOriginalName();
             $request->file('avatar_img')->storeAS('',$fname,'public_uploads');
-             //Storage::disk('public_uploads')->put($path, $request->avatar_img);
-
-            //dd('yes file');
-
-
-
+            
         }
 
         User::create([
@@ -185,8 +161,6 @@ class UserController extends Controller
 
         ]);
 
-        //dd($request->user_id[6]);
-
         if($requestData['role']=='manager'){
            $user= User::where('email',$requestData['email'])->first();
            $user->assignRole(Role::findById(2));
@@ -200,10 +174,10 @@ class UserController extends Controller
     }
 
     public function getUsers(Request $request) {
-        //3awzien el zaraer gwa blade.php ya nakash
+        
         if ($request->ajax()) {
             $data = User::withBanned()->get();
-            //$data = User::latest()->get();
+        
             return Datatables::of($data)
                 ->addColumn('action', 'helpers.actionsButtons')
                 ->editColumn('avatar_img','helpers.avatars')

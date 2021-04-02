@@ -33,7 +33,7 @@ class StoreClientRequest extends FormRequest
             'country' =>['required','string'],
             'gender' =>['required','string'],
             'avatar_img' => 'required|mimes:jpeg,jpg,png'
-            //mimes:jpeg,jpg,png,JPEG,JPG,PNG
+            
         ];
     }
 

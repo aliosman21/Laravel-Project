@@ -41,9 +41,7 @@
 @section('js')
     <script type="text/javascript">
         $(function() {
-            // $("table").addClass("mdl-data-table")
-            // $(".mdl-data-table").css("padding","10px")
-            // $(".container").css("margin-top","30px")
+         
             var table = $('.yajra-datatable').DataTable({
                 autoWidth: false,
                 columnDefs: [{
@@ -54,7 +52,7 @@
                 serverSide: true,
                 ajax: "{{ route('reservations.list.ajax') }}",
                 columns: [
-                    // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                   
                     {
                         data: 'client_id',
                         name: 'client_id'

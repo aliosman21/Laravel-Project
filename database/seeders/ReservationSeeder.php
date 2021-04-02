@@ -14,13 +14,7 @@ class ReservationSeeder extends Seeder
      */
     public function run()
     {
-/*         $reservation = new Reservation();
-        $reservation->accompany_number = 0;
-        $reservation->price = 0;
-        $reservation->status = 'pending';
-        $reservation->client_id = 1;
-        $reservation->room_id = 1;
-        $reservation->save(); */
+
 
     }
 }

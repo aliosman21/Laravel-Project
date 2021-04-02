@@ -50,7 +50,7 @@
                 serverSide: true,
                 ajax: "{{ route('reservations.list') }}",
                 columns: [
-                    // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    
                     {
                         data: 'accompany_number',
                         name: 'accompany_number'

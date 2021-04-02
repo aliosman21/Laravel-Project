@@ -23,9 +23,9 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('/', function () { return view('welcome');})->name('welcome');
-/* Route::post('/registerclient', [App\Http\Controllers\ClientController::class, 'store'])->name('create'); */
 
-Auth::routes();
+
+
 //----------------------------USERS-------------------------------------------------------------------------------//
 Route::group(['middleware' => ['auth',"forbid-banned-user",'role']], function () {
     Route::get('/users',[UserController::class, 'index'])->name('users.index');//Middleware set as example to restrict access for banned accounts
@@ -54,8 +54,7 @@ Route::get('/users/{client}/approveClient',[UserController::class, 'approveClien
 
 
 
-/* Route::get('/users/banned_users',[UserController::class, 'banned'])->name('users.banned');
-Route::get('/users/active_users',[UserController::class, 'active'])->name('users.active'); */
+
 
 //----------------------------USERS-------------------------------------------------------------------------------//
 
@@ -120,22 +119,6 @@ Route::get('reservations',[App\Http\Controllers\ReservationController::class, 'i
 Route::get('reservations/list',[App\Http\Controllers\ReservationController::class, 'getReservation'])->name('reservations.list.ajax')->middleware('auth');;
 
 
-/*
 
-    ###### base for roles and permission
-
-    Route::group(['middleware' => ['role:super-admin|admin']], function () {
-
-     });
-
-    Route::group(['middleware' => ['permission:edit users|add users']], function () {
-
-     });
-
-     Route::group(['middleware' => ['role_or_permission:super-admin|add users']], function () {
-
-     });
-
-*/
 
 

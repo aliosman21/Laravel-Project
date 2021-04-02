@@ -27,7 +27,7 @@ class ClientRepository
              'country'=>$clientInfo['country'],
              'gender' => $clientInfo['gender'],
              'avatar_img' => $imgName,
-             'user_id'=>$clientInfo['user_id']//need to be checked with ali
+             'user_id'=>$clientInfo['user_id']
          ]);
 
     }

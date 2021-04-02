@@ -40,7 +40,7 @@ class NotifyApproval extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        //dd($notifiable);
+        
         return (new MailMessage)
                     ->line('Welcome '.$notifiable->name.' to Hotel Management System')
                     ->action('Notification Action', url('/login'))
