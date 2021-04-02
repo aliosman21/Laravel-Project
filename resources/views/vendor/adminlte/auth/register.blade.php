@@ -20,6 +20,11 @@
 
 
                         @section('auth_body')
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    {{ $errors->first() }}
+                                </div>
+                            @endif
                             <form action="{{ route('clients.register') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
 
@@ -144,7 +149,8 @@
                                 {{-- Avatar field --}}
                                 <div class="input-group mb-3">
                                     <input type="file" id="avatar_img" name="avatar_img" accept="image/*"
-                                        class="form-control {{ $errors->has('avatar_img') ? 'is-invalid' : '' }}" value="{{ old('avatar_img') }}">
+                                        class="form-control {{ $errors->has('avatar_img') ? 'is-invalid' : '' }}"
+                                        value="{{ old('avatar_img') }}">
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
@@ -165,7 +171,7 @@
 
                             </form>
 
-                           
+
 
 
                         @stop

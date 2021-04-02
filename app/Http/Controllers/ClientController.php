@@ -41,6 +41,11 @@ class ClientController extends Controller {
          }
 
 
+         $clientExists = Client ::where('email',$request['email'])->first();
+         if(!$clientExists == null){
+             return redirect()->route('register')->withErrors(['Email already in use']);
+         }
+
           Client::create([
              'name' => $request['name'],
              'email' => $request['email'],
@@ -52,8 +57,9 @@ class ClientController extends Controller {
              'user_id'=>$request['user_id']//need to be checked with ali
          ]);
 
+          Auth::guard('client')->logout();
 
-         return redirect()->route('login');
+         return redirect()->route('welcome');
     }
 
     public function index(){

@@ -22,9 +22,7 @@ use Spatie\Permission\Models\Role;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome');})->name('welcome');
 /* Route::post('/registerclient', [App\Http\Controllers\ClientController::class, 'store'])->name('create'); */
 
 Auth::routes();
