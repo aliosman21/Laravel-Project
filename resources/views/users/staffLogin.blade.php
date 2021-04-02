@@ -8,8 +8,12 @@
 
 
     @section('auth_header', __('adminlte::adminlte.login_message'))
-
     @section('auth_body')
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                {{ $errors->first() }}
+            </div>
+        @endif
         <form action="{{ route('users.authenticate') }}" method="post">
             {{ csrf_field() }}
 

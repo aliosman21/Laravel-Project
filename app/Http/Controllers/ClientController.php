@@ -136,7 +136,7 @@ class ClientController extends Controller {
             $client->save();
             return redirect()->route('clients.index');
         }else{
-            return redirect()->route('login');
+            return redirect()->route('login')->withErrors(['Email or password incorrect']);
         }
         //dd($user[0])
     }

@@ -88,7 +88,8 @@ class UserController extends Controller
 
         }
         else{
-             return redirect()->route('users.login');
+
+             return redirect()->route('users.login')->withErrors(['Email or password incorrect']);
         }
         //dd($user[0]);
 
@@ -163,10 +164,10 @@ class UserController extends Controller
     }
 
     public function store(StoreUserRequest $request) {
-        
+
         $requestData = $request->all();
         //dd($requestData);
-       
+
         if($request->hasfile('avatar_img')){
 
             $fname =  $request->file('avatar_img')->getClientOriginalName();
@@ -175,7 +176,7 @@ class UserController extends Controller
 
             //dd('yes file');
 
-           
+
 
         }
 
@@ -190,9 +191,9 @@ class UserController extends Controller
             'created_by' => $requestData['user_id'][6] /// need to be checked with ali
 
         ]);
-        
+
         //dd($request->user_id[6]);
-        
+
         if($requestData['role']=='manager'){
            $user= User::where('email',$requestData['email'])->first();
            $user->assignRole(Role::findById(2));
