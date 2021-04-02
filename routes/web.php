@@ -44,7 +44,6 @@ Route::group(['middleware' => ['auth',"forbid-banned-user",'role']], function ()
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/users/login',[UserController::class, 'login'])->name('users.login');
 Route::post('/users/authenticate',[UserController::class,'authenticate'])->name('users.authenticate');
 Route::get('/nonapproved/list', [UserController::class, 'getNonApprovedClients'])->name('nonapproved.list');
@@ -95,7 +94,7 @@ Route::group(['middleware' => ['auth','role']], function () {
 Route::get('/clients',[ClientController::class , 'index'])->name('clients.index')->middleware('clientAuth');
 Route::get('/clients/create/{room}',[ClientController::class,'create'])->name('reservations.create')->middleware('clientAuth');
 Route::get('/clients/reservations',[ClientController::class,'reservation'])->name('rooms.reservation')->middleware('clientAuth');
-Route::post('/clients/store',[ClientController::class,'store'])->name('reservations.store')->middleware('clientAuth')->middleware('clientAuth');
+Route::post('/clients/store',[ClientController::class,'store'])->name('reservations.store')->middleware('clientAuth');
 Route::post('/clients/authenticate',[ClientController::class,'authenticate'])->name('clients.authenticate');
 Route::post('/clients/register',[ClientController::class,'register'])->name('clients.register');
 Route::get('/clients/reservations/list', [ClientController::class, 'getReservation'])->name('reservations.list')->middleware('clientAuth');

@@ -136,14 +136,14 @@ class ClientController extends Controller {
 
         //dd(Auth::guard('client')->attempt($dataAttempt));
         $client = Client::where('email', $request->email)->first();
-        if(Auth::guard('client')->attempt($dataAttempt) && $client->approved){
-
+        if($client == null)  return redirect()->route('login')->withErrors(['Email Doesn\'t exist']);
+        if(!$client->approved) return redirect()->route('login')->withErrors(['Email Not approved yet']);
+        if(Auth::guard('client')->attempt($dataAttempt)){
             $client->last_login = Carbon::now();
             $client->save();
             return redirect()->route('clients.index');
         }else{
             return redirect()->route('login')->withErrors(['Email or password incorrect']);
         }
-        //dd($user[0])
     }
 }
