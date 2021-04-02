@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function (){
             $pendingReservation = Reservation::where('status','pending')->get();
             $pendingReservation->delete();
-        })->daily();
+        })->everyFifteenMinutes();
 
         $schedule->call(function (){
             //some logic about sending emails

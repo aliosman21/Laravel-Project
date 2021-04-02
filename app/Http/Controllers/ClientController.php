@@ -68,6 +68,11 @@ class ClientController extends Controller {
     public function getRooms(){
         $room = Room::where('reserved', 0)->get();;
          return Datatables::of($room)
+                 ->editColumn('price',function($room){
+                     $realPrice = (int)($room->price / 100);
+                     $view =  $realPrice;
+                     return  $view ;
+                 })
                 ->addColumn('action', 'helpers.getRooms')
                 ->rawColumns(['action'])
                 ->make(true);

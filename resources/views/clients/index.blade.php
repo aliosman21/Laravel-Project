@@ -12,7 +12,7 @@
     <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
-                
+
                 <th>number</th>
                 <th>price</th>
                 <th>capacity</th>

@@ -42,7 +42,8 @@ class RoomController extends Controller {
             return Datatables::of($data)
                 ->addColumn('action', 'helpers.roomsActionsButtons')
                 ->addColumn('RealPrice',function($data){
-                  $realPrice = $data->price / 100;
+
+                  $realPrice = (int)($data->price / 100);
                   $view =  $realPrice;
                     return  $view ;
                 })
