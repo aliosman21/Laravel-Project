@@ -1,7 +1,7 @@
 
 <img src="./assets/SeasScape.png" align="right" width="27%" style="margin-top:15px"/>
 
-# SeaScape &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-informational.svg)
+# SeaScape &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-informational.svg) &middot; [![CodeFactor](https://www.codefactor.io/repository/github/aliosman21/laravel-project/badge)](https://www.codefactor.io/repository/github/aliosman21/laravel-project)
  This is our implementation for the hotel management system project done using laravel, The system is submitted as the final project for the Laravel course offered by the information technology institute (ITI).
 
 # Table of Contents  
