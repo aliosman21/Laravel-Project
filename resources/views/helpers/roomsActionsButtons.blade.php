@@ -3,7 +3,7 @@
         <strong>you don't have permission</strong>
     @else
         <a href="{{ route('rooms.edit',['room'=>$id]) }}" class="edit btn btn-success btn-sm">Edit</a>
-        <form action="{{ route('rooms.destroy',['room' =>$id ]) }}" method="post">
+        <form action="{{ route('rooms.destroy',['room' =>$id ]) }}" method="post" onsubmit="return confirm('Do you really want to delete ?');">
             @csrf
             @method('DELETE')
             <input type="submit" class="delete btn btn-danger btn-sm" value="Delete" />

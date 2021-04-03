@@ -27,10 +27,11 @@
             </form>
         @endif
         <a href="{{ route('users.edit', ['user' => $id]) }}" class="edit btn btn-success btn-sm">Edit</a>
-        <form action="{{ route('users.destroy', ['user' => $id]) }}" method="post">
+        <form action="{{ route('users.destroy', ['user' => $id]) }}" method="post" onsubmit="return confirm('Do you really want to delete this user?');">
             @csrf
             @method('DELETE')
-            <input type="submit" class="delete btn btn-danger btn-sm" value="Delete" />
+            <input type="submit" class="delete btn btn-danger btn-sm" value="Delete"/>
         </form>
+
     @endif
 @endif
