@@ -73,7 +73,7 @@ This command assigns the roles to the users of the system (Receptionist, Manager
 
 Lastly you can run this command to directly inject an admin into the database with the credentials needed
 ```
-5- $php artisan create:admin <name> <email> <password> <nationalID>
+5- $php artisan create:admin <name> <email> <password> [<nationalID>]
 ```
 Replace the fields set between <> with the appropriate parameters, Note that the nationalID parameter is optional and you can run the command without it
 
