@@ -20,7 +20,11 @@
             @endif
 
             {{-- Name field --}}
+<<<<<<< Updated upstream
             <label  >Name</label>
+=======
+
+>>>>>>> Stashed changes
             <div class="input-group mb-3">
                
                 <input type="text" name="name" class="form-control "

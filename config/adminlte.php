@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>Seascape</b>',
-    'logo_img' => 'img/logo.png',
+    'logo_img' => 'img/SeasScape.png',
     
     'logo_img_class' => 'brand-image ',
     'logo_img_xl' => null,

@@ -18,31 +18,28 @@ class UserController extends Controller
 {
 
     public function index() {
-        
-    
-
         return view('users.manage');
     }
     public function active(){
 
         $users = User::withoutBanned()->get();
         return Datatables::of($users)
-        
+
                 ->make(true);
     }
 
     public function banned(){
         $users = User::onlyBanned()->get();
         return Datatables::of($users)
-           
+
                 ->make(true);
 
     }
 
     public function ban(Request $request){
-        
+
         $user = User::where('email' , $request->email)->first();
-        
+
         $err = "User cannot be banned";
         $success = "User banned successfully";
         if($user->role != "receptionist")
@@ -108,7 +105,7 @@ class UserController extends Controller
     }
 
     public function approveClient(Client $client){
-        
+
         $client = Client::where('email' , $client->email)->first();
         $client->user_id=Auth::guard('user')->user()->id;
         if (!$client == null) {
@@ -132,7 +129,7 @@ class UserController extends Controller
 
 
     public function create(){
-        
+
         $users = User::all();
         return view('users.create',compact('users'));
     }
@@ -140,15 +137,17 @@ class UserController extends Controller
     public function store(StoreUserRequest $request) {
 
         $requestData = $request->all();
-        
+
 
         if($request->hasfile('avatar_img')){
 
             $fname =  $request->file('avatar_img')->getClientOriginalName();
             $request->file('avatar_img')->storeAS('',$fname,'public_uploads');
-            
+
         }
 
+
+        $requestData['user_id'] = auth()->guard('user')->user()->id;
         User::create([
 
             'name' => $requestData['name'],
@@ -157,7 +156,7 @@ class UserController extends Controller
             'national_id' => $requestData['national_id'],
             'avatar_img' =>   $request->hasfile('avatar_img') ? $fname : null,
             'role' => $requestData['role'],
-            'created_by' => $requestData['user_id'][6] /// need to be checked with ali
+            'created_by' => $requestData['user_id'] /// need to be checked with ali
 
         ]);
 
@@ -174,10 +173,10 @@ class UserController extends Controller
     }
 
     public function getUsers(Request $request) {
-        
+
         if ($request->ajax()) {
             $data = User::withBanned()->get();
-        
+
             return Datatables::of($data)
                 ->addColumn('action', 'helpers.actionsButtons')
                 ->editColumn('avatar_img','helpers.avatars')
@@ -208,6 +207,10 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
     public function destroy(User $user) {
+        if($user->role == 'admin'){
+            $err = 'this user is admin and cannot be deleted';
+            return view('users.manage',compact('err'));
+        }
         $user->delete();
         return redirect()->route('users.index');
     }

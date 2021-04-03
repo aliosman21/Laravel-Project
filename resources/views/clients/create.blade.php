@@ -22,9 +22,9 @@
             @endif
 
             {{-- Accompany number --}}
-            <label  >Accompany number</label>
+            <label>Accompany number</label>
             <div class="input-group mb-3">
-                
+
                 <input type="number" name="accompany_number" class="form-control "
                        placeholder="Accompany number" autofocus>
                 <div class="input-group-append">
@@ -67,7 +67,6 @@
             var endDate = document.getElementById("EndDate").value;
             if ((Date.parse(endDate) <= Date.parse(startDate))) {
                 alert("End date should be greater than Start date");
-                document.getElementById("EndDate").value = startDate;
             }
         });
     </script>
