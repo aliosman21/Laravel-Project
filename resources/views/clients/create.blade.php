@@ -22,7 +22,11 @@
             @endif
 
             {{-- Accompany number --}}
+<<<<<<< Updated upstream
             <label  >Accompany number</label>
+=======
+            <label>Accompany number</label>
+>>>>>>> Stashed changes
             <div class="input-group mb-3">
                 
                 <input type="number" name="accompany_number" class="form-control "

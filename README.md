@@ -84,10 +84,16 @@ Additionally if you want to create another admin with default parameters you may
 ```
 6- $php artisan db:seed --class=CreateAdminSeeder
 ```
-This command creates two admins in the database and their credentials are: 
+This command creates an admin in the database and their credentials are: 
 
 name = admin / email = admin@admin.com / password = 123456
 
+inorder to run the scheduler tasks you should run this command
+````
+7- $ php artisan schedule:work
+````
+this command will allow you to run delete pending reservation task every minute
+in addition to sending a notify emails to the clients which havent visited our site for a month to check on them
 
 # Database Design
 Our ER diagram is as follows:

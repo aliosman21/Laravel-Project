@@ -2,12 +2,10 @@
 
 namespace App\Console;
 
-use App\Models\Reservation;
 use Illuminate\Console\Scheduling\Schedule;
-use App\Models\Client;
-use App\Notifications\NotifyNoLoginFor30Days;
-use Carbon\Carbon;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\jobs\DeletePendingReservations;
+use App\jobs\LastLoginNotify;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,24 +24,10 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    protected function schedule(Schedule $schedule)
-    {
+    protected function schedule(Schedule $schedule) {
         $schedule->command('ban:delete-expired')->everyMinute();
-
-        $schedule->call(function (){
-            $pendingReservation = Reservation::where('status','pending')->get();
-            $pendingReservation->delete();
-        })->everyFifteenMinutes();
-
-        $schedule->call(function (){
-            
-            $date = Carbon::now()->subDays(30)->format('Y-m-d');
-            $clients = Client::whereNotBetween('last_login' , [$date , Carbon::now()->format('Y-m-d')])->get();
-            foreach ($clients as $client) {
-                $client-> $client->notify(new NotifyNoLoginFor30Days());
-            }
-        })->monthly();
-
+        $schedule->job(new DeletePendingReservations())->everyMinute();
+        $schedule->job(new LastLoginNotify())->monthly();
     }
 
     /**
