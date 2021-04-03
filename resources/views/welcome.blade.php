@@ -1,22 +1,34 @@
 @php($login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login'))
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+<link rel="icon" href="img/SeasScape.png">
 
 <nav class="navbar navbar-expand-lg " style="background-color:#131F2E">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse row" id="navbarTogglerDemo01">
-     <div class="col-sm-9">
+     <div class="col-sm-8">
      <img src="img/SeasScape.png" width="80" height="80" class="d-inline-block align-middle " alt="seascape">
     <h1  style="vertical-align: middle ;display: inline; color:rgb(152, 176, 206)">Seascape</h1>
     </div>
             @if (Auth::guard('user')->user() || Auth::guard('client')->user())
- 
-                @include('adminlte::partials.navbar.menu-item-logout-link')
+
+
+          @if(Auth::guard('user')->user())
+              @if(Auth::guard('user')->user()->role == 'receptionist')
+                  <a class="col-sm-2 btn btn-outline-secondary" style="color:rgb(152, 176, 206);margin-right: 10px;"  href="{{route('users.nonApprovedClients')}}">Manage clients </a>
+              @else
+                  <a class="col-sm-2 btn btn-outline-secondary" style="color:rgb(152, 176, 206);margin-right: 10px;"  href="{{route('users.index')}}">Manage users </a>
+              @endif
+          @else
+              <a class="col-sm-2 btn btn-outline-secondary" style="color:rgb(152, 176, 206);margin-right: 10px;"  href="{{route('clients.index')}}">Make reservations</a>
+          @endif
+              @include('adminlte::partials.navbar.menu-item-logout-link')
             @else
-                <a style="color:rgb(152, 176, 206)" class="col-sm-1" href={{ route('users.login') }} >Staff Login</a>
-                <a class="col-sm-2" style="color:rgb(152, 176, 206)"  href={{ $login_url }}>Client Login</a>
+                <a style="color:rgb(152, 176, 206);margin-right: 10px;" class="col-sm-1 btn btn-outline-secondary" href={{ route('users.login') }} >Staff Login</a>
+                <a class="col-sm-1 btn btn-outline-secondary" style="color:rgb(152, 176, 206)"  href={{ $login_url }}>Client Login</a>
+
             @endif
   </div>
 </nav>
@@ -90,7 +102,7 @@
     <div class="card-body">
       <h5 class="card-title">Amazing beds</h5>
       <p class="card-text"> The beds are often extremely large and comfortable and the sheets are heavy, and you feel so cosy you may struggle to get out of them. You are also likely to get a large number of pillows.</p>
- 
+
     </div>
   </div>
   <div class="card">
@@ -106,7 +118,7 @@
     <div class="card-body">
       <h5 class="card-title">Pool facilities</h5>
       <p class="card-text">Not every luxury hotel will have a pool but many of them do. Some of them have rooftop pools, heated outdoor pools and also indoor pools. You may also get separate pools for children and hot tubs/whirlpools.</p>
- 
+
     </div>
   </div>
 </div>
@@ -115,12 +127,12 @@
 <br>
 <br>
 
-<div style="background-color:#131F2E;height:100px;padding:20px "  >           
-         
+<div style="background-color:#131F2E;height:100px;padding:20px "  >
+
      <img src="img/SeasScape.png" width="70" height="70"  alt="">
     <h1  style="vertical-align: middle ;display: inline; color:rgb(152, 176, 206)">Seascape</h1>
     <p style="color:rgb(152, 176, 206);float:right;padding:10px">All Rights Reserved.</p>
-    
+
 </div>
 
 
