@@ -26,7 +26,7 @@ class ClientController extends Controller {
             $request->file('avatar_img')->storeAS('', $fname, 'public_uploads');
         }
          else{
-             
+
          }
         $clientExists = ClientRepository::getClientUsingEmail($request['email']);
         if(!$clientExists == null){
@@ -42,7 +42,7 @@ class ClientController extends Controller {
     }
 
     public function getRooms(){
-        
+
         $room = RoomRepository::getAllNonReservedRooms();
          return Datatables::of($room)
                  ->editColumn('price',function($room){
@@ -66,7 +66,7 @@ class ClientController extends Controller {
     }
 
     public function getReservation(){
-        
+
         $reservation = ReservationRepository::getPaidReservationsOfLoggedInClient();
         return Datatables::of($reservation)
                 ->editColumn('price',function ($data){
@@ -74,7 +74,7 @@ class ClientController extends Controller {
                 })
                 ->editColumn('room_id',function ($data){
                    $roomNumber = RoomRepository::getRoomById($data->room_id);
-                    
+
                     return $roomNumber->number;
                 })
                 ->rawColumns(['price','room_id'])
@@ -85,9 +85,10 @@ class ClientController extends Controller {
         $room = RoomRepository::getRoomById($request->room_id);
         $request->validate([
             'accompany_number' => 'max:'.$room->capacity,
-            'start_date' => 'required',
-            'end_date' => 'required'
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date'
         ]);
+
         ReservationRepository::reserveRoomAsClient($request , $room);
         RoomRepository::changeRoomStatusToReserved($room);
         return redirect()->route('clients.checkout');
