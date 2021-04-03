@@ -7,16 +7,16 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse row" id="navbarTogglerDemo01">
-     <div class="col-sm-7">
-     <img src="img/logo.png" width="50" height="50" class="d-inline-block align-top " alt="">
-    <h1 class="col-sm-1" style="vertical-align: middle ;display: inline; color:white">Seascape</h1>
+     <div class="col-sm-9">
+     <img src="img/SeasScape.png" width="80" height="80" class="d-inline-block align-middle " alt="seascape">
+    <h1  style="vertical-align: middle ;display: inline; color:rgb(152, 176, 206)">Seascape</h1>
     </div>
             @if (Auth::guard('user')->user() || Auth::guard('client')->user())
  
                 @include('adminlte::partials.navbar.menu-item-logout-link')
             @else
-                <a style="color:white" class="col-sm-2" href={{ route('users.login') }} class="px-3">Staff Login</a>
-                <a class="col-sm-2" style="color:white"  href={{ $login_url }}>Client Login</a>
+                <a style="color:rgb(152, 176, 206)" class="col-sm-1" href={{ route('users.login') }} >Staff Login</a>
+                <a class="col-sm-2" style="color:rgb(152, 176, 206)"  href={{ $login_url }}>Client Login</a>
             @endif
   </div>
 </nav>
@@ -73,7 +73,7 @@
 <div >
 <img src="https://cdn.galaxy.tf/thumb/sizeW1920/uploads/3s/cms_image/001/583/186/1583186614_5e5d82b6c8f00-thumb.png" width="100%" height="400px">
 <div style="  position: absolute;
-  top: 170%;
+  top: 190%;
   left: 50%;
   transform: translate(-50%, -50%);">
 <h2 style="text-align:center;color:white;  font-weight: bold;font-size: 30px;">Beach & Pool</h2>
@@ -117,9 +117,9 @@
 
 <div style="background-color:#131F2E;height:100px;padding:20px "  >           
          
-     <img src="img/logo.png" width="50" height="50"  alt="">
-    <h1  style="vertical-align: middle ;display: inline; color:white">Seascape</h1>
-    <p style="color:white;float:right;padding:10px">All Rights Reserved.</p>
+     <img src="img/SeasScape.png" width="70" height="70"  alt="">
+    <h1  style="vertical-align: middle ;display: inline; color:rgb(152, 176, 206)">Seascape</h1>
+    <p style="color:rgb(152, 176, 206);float:right;padding:10px">All Rights Reserved.</p>
     
 </div>
 
