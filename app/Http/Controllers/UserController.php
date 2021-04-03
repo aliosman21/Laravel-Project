@@ -18,9 +18,6 @@ class UserController extends Controller
 {
 
     public function index() {
-
-
-
         return view('users.manage');
     }
     public function active(){
@@ -210,6 +207,10 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
     public function destroy(User $user) {
+        if($user->role == 'admin'){
+            $err = 'this user is admin and cannot be deleted';
+            return view('users.manage',compact('err'));
+        }
         $user->delete();
         return redirect()->route('users.index');
     }
