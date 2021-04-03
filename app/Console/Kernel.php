@@ -31,12 +31,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('ban:delete-expired')->everyMinute();
 
         $schedule->call(function (){
-            $pendingReservation = Reservation::where('status','pending')->get();
+            $pendingReservation = Reservation::where('status','pending')->first();
             $pendingReservation->delete();
-        })->everyFifteenMinutes();
+        })->everyMinute();
 
         $schedule->call(function (){
-            
             $date = Carbon::now()->subDays(30)->format('Y-m-d');
             $clients = Client::whereNotBetween('last_login' , [$date , Carbon::now()->format('Y-m-d')])->get();
             foreach ($clients as $client) {

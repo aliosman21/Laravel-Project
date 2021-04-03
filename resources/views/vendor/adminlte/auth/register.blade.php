@@ -113,68 +113,72 @@
                                 <div class="input-group mb-3">
                                     <select id="country" name="country" class="form-control {{ $errors->has('Country') ? 'is-invalid' : '' }}"
                                         value="{{ old('Country') }}" placeholder="Country" autofocus>
-                                        @include('adminlte::partials.countries.country')
-                                    </select>
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                                        @php($countries = countries())
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country['official_name'] }}">{{ $country['official_name'] }}</option>
+                                            @endforeach
+                                            {{-- @include('adminlte::partials.countries.country') --}}
+                                        </select>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                                            </div>
                                         </div>
+                                        @if ($errors->has('Country'))
+                                            <div class="invalid-feedback">
+                                                <strong>{{ $errors->first('Country') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
-                                    @if ($errors->has('Country'))
-                                        <div class="invalid-feedback">
-                                            <strong>{{ $errors->first('Country') }}</strong>
-                                        </div>
-                                    @endif
-                                </div>
 
-                                {{-- gender field --}}
-                                <div class="input-group mb-3">
-                                    <select id="gender" name="gender" class="form-control {{ $errors->has('gender') ? 'is-invalid' : '' }}"
-                                        value="{{ old('gender') }}" placeholder="gender" autofocus>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                                    {{-- gender field --}}
+                                    <div class="input-group mb-3">
+                                        <select id="gender" name="gender" class="form-control {{ $errors->has('gender') ? 'is-invalid' : '' }}"
+                                            value="{{ old('gender') }}" placeholder="gender" autofocus>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                                            </div>
                                         </div>
+                                        @if ($errors->has('gender'))
+                                            <div class="invalid-feedback">
+                                                <strong>{{ $errors->first('gender') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
-                                    @if ($errors->has('gender'))
-                                        <div class="invalid-feedback">
-                                            <strong>{{ $errors->first('gender') }}</strong>
-                                        </div>
-                                    @endif
-                                </div>
 
-                                {{-- Avatar field --}}
-                                <div class="input-group mb-3">
-                                    <input type="file" id="avatar_img" name="avatar_img" accept="image/*"
-                                        class="form-control {{ $errors->has('avatar_img') ? 'is-invalid' : '' }}"
-                                        value="{{ old('avatar_img') }}">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                                    {{-- Avatar field --}}
+                                    <div class="input-group mb-3">
+                                        <input type="file" id="avatar_img" name="avatar_img" accept="image/*"
+                                            class="form-control {{ $errors->has('avatar_img') ? 'is-invalid' : '' }}"
+                                            value="{{ old('avatar_img') }}">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                                            </div>
                                         </div>
+                                        @if ($errors->has('avatar_img'))
+                                            <div class="invalid-feedback">
+                                                <strong>'{{ $errors->first('avatar_img') }}'</strong>
+                                            </div>
+                                        @endif
                                     </div>
-                                    @if ($errors->has('avatar_img'))
-                                        <div class="invalid-feedback">
-                                            <strong>'{{ $errors->first('avatar_img') }}'</strong>
-                                        </div>
-                                    @endif
-                                </div>
 
-                                {{-- Register button --}}
-                                <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
-                                    <span class="fas fa-user-plus"></span>
-                                    {{ __('adminlte::adminlte.register') }}
-                                </button>
+                                    {{-- Register button --}}
+                                    <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+                                        <span class="fas fa-user-plus"></span>
+                                        {{ __('adminlte::adminlte.register') }}
+                                    </button>
 
-                            </form>
+                                </form>
 
 
 
 
-                        @stop
+                            @stop
 
                         @section('auth_footer')
                             <p class="my-0">
